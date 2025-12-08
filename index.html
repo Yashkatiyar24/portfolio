@@ -3,143 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yash Katiyar - Full Stack Developer & ML Engineer</title>
+    <title>Yash Katiyar - AI Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">Yash Katiyar</div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Hi, I'm <span class="highlight">Yash Katiyar</span></h1>
-                <h2 class="hero-subtitle">Full Stack Developer & ML Engineer</h2>
-                <p class="hero-description">Building intelligent web applications with modern technologies and machine learning</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                </div>
+    <div class="gradient-bg"></div>
+    
+    <div class="container" id="mainView">
+        <div class="avatar-container">
+            <div class="avatar-icon">
+                <i class="fas fa-star"></i>
             </div>
         </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>I'm a passionate Full Stack Developer and ML Engineer specializing in building intelligent web applications. I combine modern web technologies with machine learning to create innovative solutions.</p>
-                <div class="skills">
-                    <h3>Technical Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <i class="fab fa-react"></i>
-                            <span>React</span>
+        
+        <h1 class="greeting">Hey, I'm Yash 👋</h1>
+        <h2 class="main-title">AI Portfolio</h2>
+        
+        <div class="character-container">
+            <div class="character">
+                <div class="character-head">
+                    <div class="hair"></div>
+                    <div class="glasses">
+                        <div class="glass-left"></div>
+                        <div class="glass-right"></div>
+                        <div class="glass-bridge"></div>
+                    </div>
+                    <div class="eyes">
+                        <div class="eye eye-left">
+                            <div class="pupil"></div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-node-js"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>MongoDB</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-brain"></i>
-                            <span>Machine Learning</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-robot"></i>
-                            <span>Hugging Face</span>
+                        <div class="eye eye-right">
+                            <div class="pupil"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Supportport</h3>
-                        <div class="project-tags">
-                            <span class="tag">MERN Stack</span>
-                            <span class="tag">ML</span>
-                            <span class="tag">LoRA</span>
+                <div class="laptop">
+                    <div class="laptop-screen">
+                        <div class="apple-logo">
+                            <i class="fab fa-apple"></i>
                         </div>
                     </div>
-                    <p class="project-description">
-                        An intelligent educational chatbot built with MERN stack, powered by a fine-tuned Mistral 7B Instruct model. 
-                        The AI model was trained using LoRA on custom scraped data via BeautifulSoup, with monitoring through Arize Phoenix/MLFlow.
+                    <div class="laptop-base"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Ask me anything..." id="searchInput">
+            <button class="search-btn" id="searchBtn">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn" data-section="me">
+                <i class="fas fa-user"></i>
+                <span>Me</span>
+            </button>
+            <button class="nav-btn" data-section="projects">
+                <i class="fas fa-briefcase"></i>
+                <span>Projects & Work</span>
+            </button>
+            <button class="nav-btn" data-section="skills">
+                <i class="fas fa-layer-group"></i>
+                <span>Skills</span>
+            </button>
+            <button class="nav-btn" data-section="education">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Education</span>
+            </button>
+            <button class="nav-btn" data-section="contact">
+                <i class="fas fa-address-book"></i>
+                <span>Contact</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Me Section -->
+    <div class="section-view" id="meSection" style="display: none;">
+        <div class="section-header">
+            <div class="avatar-small">
+                <i class="fas fa-user"></i>
+            </div>
+            <h2>About Me</h2>
+        </div>
+        <div class="section-content">
+            <p class="intro-text">
+                I'm a passionate <strong>Full Stack Developer & ML Engineer</strong> who loves building intelligent web applications. 
+                I specialize in combining modern web technologies with machine learning to create innovative solutions.
+            </p>
+            <p class="intro-text">
+                My expertise lies in the MERN stack and fine-tuning language models for domain-specific applications. 
+                I enjoy working on challenging problems that require both software engineering and AI/ML skills.
+            </p>
+            <div class="quick-facts">
+                <div class="fact-item">
+                    <i class="fas fa-code"></i>
+                    <span>Full Stack Development</span>
+                </div>
+                <div class="fact-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Machine Learning</span>
+                </div>
+                <div class="fact-item">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Model Fine-tuning</span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <button class="back-btn" onclick="showMain()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="section-view" id="projectsSection" style="display: none;">
+        <div class="section-header">
+            <div class="avatar-small">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <h2>My Projects</h2>
+        </div>
+        <div class="section-content">
+            <div class="projects-carousel">
+                <div class="project-card-large active">
+                    <div class="project-tag">AI Platform</div>
+                    <h3>Supportport</h3>
+                    <div class="project-preview">
+                        <div class="project-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                    </div>
+                    <p class="project-desc">
+                        Educational chatbot powered by fine-tuned Mistral 7B Instruct model. 
+                        Built with MERN stack and trained using LoRA on custom scraped data.
                     </p>
-                    <div class="project-tech">
-                        <h4>Tech Stack:</h4>
-                        <ul>
-                            <li><strong>Frontend:</strong> React, MongoDB, Express, Node.js</li>
-                            <li><strong>AI/ML:</strong> Mistral 7B Instruct (Hugging Face)</li>
-                            <li><strong>Training:</strong> LoRA fine-tuning</li>
-                            <li><strong>Data:</strong> BeautifulSoup (bs4) web scraping</li>
-                            <li><strong>Monitoring:</strong> Arize Phoenix / MLFlow</li>
-                            <li><strong>Tools:</strong> Cost calculation & model hosting</li>
-                        </ul>
-                    </div>
-                    <div class="project-features">
-                        <h4>Key Features:</h4>
-                        <ul>
-                            <li>Real-time chatbot interface with MERN stack</li>
-                            <li>Custom fine-tuned SLM for educational domain</li>
-                            <li>Efficient LoRA training on scraped data</li>
-                            <li>Model performance monitoring and cost tracking</li>
-                        </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag">MERN</span>
+                        <span class="tech-tag">Mistral 7B</span>
+                        <span class="tech-tag">LoRA</span>
+                        <span class="tech-tag">BeautifulSoup</span>
+                        <span class="tech-tag">MLFlow</span>
                     </div>
                 </div>
             </div>
+            <p class="projects-note">
+                I've worked on building real-world AI systems, especially in ML, NLP, and full-stack development. 
+                I love creating intelligent applications that solve practical problems.
+            </p>
         </div>
-    </section>
+        <div class="bottom-nav">
+            <button class="back-btn" onclick="showMain()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="contact-description">Feel free to reach out for collaborations or just a friendly chat!</p>
-            <div class="contact-links">
-                <a href="mailto:yashkatiyar2405@gmail.com" class="contact-link">
+    <!-- Skills Section -->
+    <div class="section-view" id="skillsSection" style="display: none;">
+        <div class="section-header">
+            <div class="avatar-small">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <h2>Skills & Technologies</h2>
+        </div>
+        <div class="section-content">
+            <div class="skills-category">
+                <h3>Frontend Development</h3>
+                <div class="skills-list">
+                    <span class="skill-badge">React</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">HTML/CSS</span>
+                    <span class="skill-badge">Tailwind CSS</span>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>Backend Development</h3>
+                <div class="skills-list">
+                    <span class="skill-badge">Node.js</span>
+                    <span class="skill-badge">Express</span>
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">REST APIs</span>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>AI/ML & Data</h3>
+                <div class="skills-list">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Hugging Face</span>
+                    <span class="skill-badge">LoRA Fine-tuning</span>
+                    <span class="skill-badge">BeautifulSoup</span>
+                    <span class="skill-badge">MLFlow</span>
+                    <span class="skill-badge">Arize Phoenix</span>
+                </div>
+            </div>
+            <div class="skills-category">
+                <h3>Tools & Platforms</h3>
+                <div class="skills-list">
+                    <span class="skill-badge">Git/GitHub</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">Vercel</span>
+                    <span class="skill-badge">VS Code</span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <button class="back-btn" onclick="showMain()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="section-view" id="educationSection" style="display: none;">
+        <div class="section-header">
+            <div class="avatar-small">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h2>Education & Learning</h2>
+        </div>
+        <div class="section-content">
+            <div class="education-item">
+                <h3>Full Stack Development</h3>
+                <p>Specialized in MERN stack development with focus on building scalable web applications</p>
+            </div>
+            <div class="education-item">
+                <h3>Machine Learning Engineering</h3>
+                <p>Expertise in fine-tuning language models, particularly using LoRA for efficient training</p>
+            </div>
+            <div class="education-item">
+                <h3>Continuous Learning</h3>
+                <p>Always exploring new technologies in AI/ML, web development, and cloud computing</p>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <button class="back-btn" onclick="showMain()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section-view" id="contactSection" style="display: none;">
+        <div class="section-header">
+            <div class="avatar-small">
+                <i class="fas fa-address-book"></i>
+            </div>
+            <h2>Get In Touch</h2>
+        </div>
+        <div class="section-content">
+            <p class="contact-intro">Feel free to reach out for collaborations, opportunities, or just a friendly chat!</p>
+            <div class="contact-links-grid">
+                <a href="mailto:yashkatiyar2405@gmail.com" class="contact-card">
                     <i class="fas fa-envelope"></i>
-                    <span>yashkatiyar2405@gmail.com</span>
+                    <span>Email</span>
+                    <small>yashkatiyar2405@gmail.com</small>
                 </a>
-                <a href="https://github.com/YashKatiyar24" target="_blank" class="contact-link">
+                <a href="https://github.com/YashKatiyar24" target="_blank" class="contact-card">
                     <i class="fab fa-github"></i>
                     <span>GitHub</span>
+                    <small>@YashKatiyar24</small>
                 </a>
-                <a href="https://www.linkedin.com/in/yash-katiyar-5765a9285/" target="_blank" class="contact-link">
+                <a href="https://www.linkedin.com/in/yash-katiyar-5765a9285/" target="_blank" class="contact-card">
                     <i class="fab fa-linkedin"></i>
                     <span>LinkedIn</span>
+                    <small>Yash Katiyar</small>
                 </a>
             </div>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Yash Katiyar. All rights reserved.</p>
+        <div class="bottom-nav">
+            <button class="back-btn" onclick="showMain()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
         </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
