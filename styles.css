@@ -587,26 +587,102 @@ body {
     border: 1px solid rgba(74, 144, 226, 0.3);
 }
 
-/* Education */
+/* Education Section */
+.education-image-container {
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.education-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.education-details {
+    margin-top: 2rem;
+}
+
 .education-item {
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.education-item:last-child {
-    border-bottom: none;
+.education-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.education-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
+.education-header i {
+    font-size: 1.8rem;
     color: var(--primary-blue);
 }
 
-.education-item p {
+.education-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.degree {
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.duration {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.skills-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+.skills-highlight i {
+    color: var(--primary-blue);
+    font-size: 1rem;
+}
+
+.skills-highlight span {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(74, 144, 226, 0.05);
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.location-info i {
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.location-info span {
+    color: var(--text-secondary);
+    font-size: 1rem;
 }
 
 /* Contact */
@@ -756,5 +832,13 @@ body {
 
     .project-card-large h3 {
         font-size: 1.5rem;
+    }
+
+    .education-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .degree {
+        font-size: 1rem;
     }
 }
