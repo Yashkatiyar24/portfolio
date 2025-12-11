@@ -52,9 +52,11 @@ function handleSearch() {
     if (!query) return;
     
     // Simple keyword matching
-    if (query.includes('project') || query.includes('work') || query.includes('supportport')) {
+    if (query.includes('project') || query.includes('work') || query.includes('github') || 
+        query.includes('salasar') || query.includes('genbook') || query.includes('finsight')) {
         showSection('projects');
-    } else if (query.includes('skill') || query.includes('tech') || query.includes('stack')) {
+    } else if (query.includes('skill') || query.includes('tech') || query.includes('stack') || 
+               query.includes('python') || query.includes('typescript')) {
         showSection('skills');
     } else if (query.includes('about') || query.includes('me') || query.includes('who')) {
         showSection('me');
@@ -69,6 +71,87 @@ function handleSearch() {
     
     searchInput.value = '';
 }
+
+// Carousel functionality
+let currentSlide = 0;
+const projectCards = document.querySelectorAll('.project-card-large');
+const totalSlides = projectCards.length;
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const dotsContainer = document.getElementById('carouselDots');
+
+// Create dots
+function createDots() {
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function updateCarousel() {
+    // Hide all cards
+    projectCards.forEach(card => {
+        card.classList.remove('active');
+    });
+    
+    // Show current card
+    projectCards[currentSlide].classList.add('active');
+    
+    // Update dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+    
+    // Update button states
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === totalSlides - 1;
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateCarousel();
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 0) {
+        currentSlide--;
+        updateCarousel();
+    }
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+}
+
+// Event listeners for carousel
+if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+}
+
+// Initialize carousel
+if (projectCards.length > 0) {
+    createDots();
+    updateCarousel();
+}
+
+// Keyboard navigation for carousel
+document.addEventListener('keydown', (e) => {
+    if (sections.projects.style.display === 'block') {
+        if (e.key === 'ArrowRight') {
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+        }
+    }
+});
 
 // Eye movement animation
 const pupils = document.querySelectorAll('.pupil');
@@ -113,3 +196,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
 });
+
+// Auto-play carousel (optional - uncomment to enable)
+// let autoPlayInterval;
+// function startAutoPlay() {
+//     autoPlayInterval = setInterval(() => {
+//         if (currentSlide < totalSlides - 1) {
+//             nextSlide();
+//         } else {
+//             currentSlide = 0;
+//             updateCarousel();
+//         }
+//     }, 5000); // Change slide every 5 seconds
+// }
+
+// function stopAutoPlay() {
+//     clearInterval(autoPlayInterval);
+// }
+
+// Start auto-play when projects section is visible
+// const observer = new IntersectionObserver((entries) => {
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting && entry.target.id === 'projectsSection') {
+//             startAutoPlay();
+//         } else {
+//             stopAutoPlay();
+//         }
+//     });
+// });
+
+// if (sections.projects) {
+//     observer.observe(sections.projects);
+// }
