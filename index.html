@@ -13,7 +13,7 @@
     <div class="container" id="mainView">
         <div class="avatar-container">
             <div class="avatar-icon">
-                <i class="fas fa-star"></i>
+                👨‍💻
             </div>
         </div>
         
@@ -84,7 +84,7 @@
     <div class="section-view" id="meSection" style="display: none;">
         <div class="section-header">
             <div class="avatar-small">
-                <i class="fas fa-user"></i>
+                👨‍💻
             </div>
             <h2>About Me</h2>
         </div>
@@ -94,7 +94,7 @@
                 I specialize in combining modern web technologies with machine learning to create innovative solutions.
             </p>
             <p class="intro-text">
-                My expertise lies in the MERN stack and fine-tuning language models for domain-specific applications. 
+                My expertise lies in the MERN stack, TypeScript, and fine-tuning language models for domain-specific applications. 
                 I enjoy working on challenging problems that require both software engineering and AI/ML skills.
             </p>
             <div class="quick-facts">
@@ -123,36 +123,203 @@
     <div class="section-view" id="projectsSection" style="display: none;">
         <div class="section-header">
             <div class="avatar-small">
-                <i class="fas fa-briefcase"></i>
+                👨‍💻
             </div>
             <h2>My Projects</h2>
         </div>
         <div class="section-content">
-            <div class="projects-carousel">
-                <div class="project-card-large active">
-                    <div class="project-tag">AI Platform</div>
-                    <h3>Supportport</h3>
-                    <div class="project-preview">
-                        <div class="project-icon">
-                            <i class="fas fa-comments"></i>
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="projects-carousel">
+                    <!-- Project 1: Salasar -->
+                    <div class="project-card-large" data-index="0">
+                        <div class="project-tag">Full Stack</div>
+                        <h3>Salasar</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
                         </div>
+                        <p class="project-desc">
+                            A comprehensive TypeScript-based application with modern architecture and scalable design patterns.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/app-salasar-main-main" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                     </div>
-                    <p class="project-desc">
-                        Educational chatbot powered by fine-tuned Mistral 7B Instruct model. 
-                        Built with MERN stack and trained using LoRA on custom scraped data.
-                    </p>
-                    <div class="project-tech-tags">
-                        <span class="tech-tag">MERN</span>
-                        <span class="tech-tag">Mistral 7B</span>
-                        <span class="tech-tag">LoRA</span>
-                        <span class="tech-tag">BeautifulSoup</span>
-                        <span class="tech-tag">MLFlow</span>
+
+                    <!-- Project 2: GENBOOK.AI -->
+                    <div class="project-card-large" data-index="1">
+                        <div class="project-tag">AI Platform</div>
+                        <h3>GENBOOK.AI</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            AI-powered book generation platform built with TypeScript. Leverages advanced language models to create content.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Next.js</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/GENBOOK.AI" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Project 3: FINSIGHT.AI -->
+                    <div class="project-card-large" data-index="2">
+                        <div class="project-tag">FinTech AI</div>
+                        <h3>FINSIGHT.AI</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            Financial insights platform powered by AI. Provides intelligent analysis and predictions for financial data.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Finance</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/FINSIGHT.AI" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Project 4: Movie Recommendation -->
+                    <div class="project-card-large" data-index="3">
+                        <div class="project-tag">ML/Recommendation</div>
+                        <h3>Movie Recommender</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-film"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            Machine learning-based movie recommendation system using collaborative filtering and content-based algorithms.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/Movie-recommendation" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Project 5: Transcribe Audio -->
+                    <div class="project-card-large" data-index="4">
+                        <div class="project-tag">AI/Audio</div>
+                        <h3>Audio Transcriber</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            AI-powered audio transcription tool using speech recognition models. Converts audio files to accurate text.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Speech Recognition</span>
+                            <span class="tech-tag">Jupyter</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/Transcribe-Audio-Files-" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Project 6: Twitter Sentiment Analysis -->
+                    <div class="project-card-large" data-index="5">
+                        <div class="project-tag">NLP/ML</div>
+                        <h3>Twitter Sentiment Analysis</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            Natural Language Processing project analyzing Twitter sentiment using machine learning classification models.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">NLTK</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/Twitter-sentimental-analysis" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Project 7: Image Classification -->
+                    <div class="project-card-large" data-index="6">
+                        <div class="project-tag">Deep Learning</div>
+                        <h3>Image Classification</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            Deep learning image classification using Convolutional Neural Networks (CNNs) for accurate image recognition.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">CNN</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/Image-Classification-with-Neural-Networks" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Project 8: Thrift Web -->
+                    <div class="project-card-large" data-index="7">
+                        <div class="project-tag">E-commerce</div>
+                        <h3>Thrift Web</h3>
+                        <div class="project-preview">
+                            <div class="project-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            E-commerce platform for thrift shopping built with modern JavaScript frameworks and responsive design.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">E-commerce</span>
+                        </div>
+                        <a href="https://github.com/Yashkatiyar24/thrift-web" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                     </div>
                 </div>
+
+                <button class="carousel-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
+
+            <div class="carousel-dots" id="carouselDots"></div>
+
             <p class="projects-note">
-                I've worked on building real-world AI systems, especially in ML, NLP, and full-stack development. 
-                I love creating intelligent applications that solve practical problems.
+                I've worked on a bunch of cool projects, especially in ML, NLP, and computer vision. I love building real-world AI systems and full-stack applications.
             </p>
         </div>
         <div class="bottom-nav">
@@ -175,7 +342,9 @@
                 <h3>Frontend Development</h3>
                 <div class="skills-list">
                     <span class="skill-badge">React</span>
+                    <span class="skill-badge">TypeScript</span>
                     <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Next.js</span>
                     <span class="skill-badge">HTML/CSS</span>
                     <span class="skill-badge">Tailwind CSS</span>
                 </div>
@@ -187,17 +356,21 @@
                     <span class="skill-badge">Express</span>
                     <span class="skill-badge">MongoDB</span>
                     <span class="skill-badge">REST APIs</span>
+                    <span class="skill-badge">GraphQL</span>
                 </div>
             </div>
             <div class="skills-category">
-                <h3>AI/ML & Data</h3>
+                <h3>AI/ML & Data Science</h3>
                 <div class="skills-list">
                     <span class="skill-badge">Python</span>
+                    <span class="skill-badge">TensorFlow</span>
+                    <span class="skill-badge">Scikit-learn</span>
+                    <span class="skill-badge">Pandas</span>
+                    <span class="skill-badge">NumPy</span>
+                    <span class="skill-badge">NLP</span>
+                    <span class="skill-badge">Computer Vision</span>
                     <span class="skill-badge">Hugging Face</span>
                     <span class="skill-badge">LoRA Fine-tuning</span>
-                    <span class="skill-badge">BeautifulSoup</span>
-                    <span class="skill-badge">MLFlow</span>
-                    <span class="skill-badge">Arize Phoenix</span>
                 </div>
             </div>
             <div class="skills-category">
@@ -207,6 +380,7 @@
                     <span class="skill-badge">Docker</span>
                     <span class="skill-badge">Vercel</span>
                     <span class="skill-badge">VS Code</span>
+                    <span class="skill-badge">Jupyter</span>
                 </div>
             </div>
         </div>
@@ -228,11 +402,15 @@
         <div class="section-content">
             <div class="education-item">
                 <h3>Full Stack Development</h3>
-                <p>Specialized in MERN stack development with focus on building scalable web applications</p>
+                <p>Specialized in MERN stack and TypeScript development with focus on building scalable web applications</p>
             </div>
             <div class="education-item">
-                <h3>Machine Learning Engineering</h3>
-                <p>Expertise in fine-tuning language models, particularly using LoRA for efficient training</p>
+                <h3>Machine Learning & AI</h3>
+                <p>Expertise in deep learning, NLP, computer vision, and fine-tuning language models</p>
+            </div>
+            <div class="education-item">
+                <h3>Data Science</h3>
+                <p>Proficient in data analysis, visualization, and building ML models for real-world applications</p>
             </div>
             <div class="education-item">
                 <h3>Continuous Learning</h3>
