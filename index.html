@@ -12,8 +12,8 @@
     
     <div class="container" id="mainView">
         <div class="avatar-container">
-            <div class="avatar-icon avatar-photo">
-                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-11T23-00-37-541Z-5b1fbe36-chat-image-1765494037521-0.jpg" alt="Yash Katiyar">
+            <div class="avatar-icon">
+                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-12T08-55-26-514Z-62650065-nano-banana-pro_1765529726358.png" alt="Yash Katiyar Avatar">
             </div>
         </div>
         
@@ -82,64 +82,52 @@
 
     <!-- Me Section -->
     <div class="section-view" id="meSection" style="display: none;">
-        <div class="section-header">
-            <div class="avatar-small avatar-photo-small">
-                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-11T23-00-37-541Z-5b1fbe36-chat-image-1765494037521-0.jpg" alt="Yash Katiyar">
-            </div>
-            <h2>About Me</h2>
+        <div class="section-header-simple">
+            <div class="avatar-emoji">👨‍💻</div>
+            <h2>Yash Katiyar</h2>
+            <p class="header-meta">20 years old • Delhi, India</p>
         </div>
-        <div class="section-content">
-            <div class="profile-layout">
-                <div class="profile-image-container">
+        
+        <div class="section-content-me">
+            <div class="me-layout">
+                <div class="me-photo-container">
                     <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-11T23-00-37-541Z-5b1fbe36-chat-image-1765494037521-0.jpg" 
                          alt="Yash Katiyar" 
-                         class="profile-image">
+                         class="me-photo">
                 </div>
                 
-                <div class="profile-content">
-                    <h3 class="profile-greeting">Hey 👋</h3>
-                    <p class="intro-text">
-                        I'm <strong>Yash Katiyar</strong>, a developer and builder passionate about AI, Machine Learning, and full-stack product development. I love creating real, usable systems—everything from AI-powered finance dashboards to mobile apps for real businesses.
+                <div class="me-bio">
+                    <h3 class="bio-greeting">Hey 👋</h3>
+                    <p class="bio-text">
+                        I'm <strong>Yash Katiyar</strong>. I'm a developer specializing in AI, Machine Learning, and full-stack development. I'm currently pursuing my B.Tech in AI & Data Science while building real-world products.
                     </p>
-                    <p class="intro-text">
-                        I'm currently pursuing my <strong>B.Tech in AI & Data Science</strong> while actively building and shipping products. I've worked with modern stacks like <strong>React Native, Expo, Supabase, Firebase, Python, and LLM-based systems</strong>, and I enjoy turning ideas into clean, functional, end-to-end applications.
+                    <p class="bio-text">
+                        I've worked with modern stacks like <strong>React Native, Expo, Supabase, Firebase, Python, and LLM-based systems</strong>. I love turning ideas into clean, functional applications.
                     </p>
-                    <p class="intro-text">
-                        Some of the things I've built include <strong>FinSight.ai</strong> (an AI-driven personal finance tool), <strong>Salasar Stay Manager</strong> (a production-ready hotel management app), <strong>NutriWise</strong> (budget-based meal planning AI), and several other SaaS prototypes. I'm always experimenting, learning, and pushing myself to ship better and faster.
+                    <p class="bio-text">
+                        Some of my projects include <strong>FinSight.ai</strong> (AI-driven personal finance tool), <strong>Salasar Stay Manager</strong> (production-ready hotel management app), and <strong>NutriWise</strong> (budget-based meal planning AI).
                     </p>
-                    <p class="intro-text">
-                        I'm deeply passionate about <strong>startups, AI, design, and building products that solve real problems</strong>. Every project teaches me something new — whether it's UI/UX, backend architecture, LLM prompting, or just handling clients and deploying to the Play Store.
+                    <p class="bio-text">
+                        I'm passionate about <strong>startups, AI, design, and building products that solve real problems</strong>. Every project teaches me something new.
                     </p>
+                    
+                    <div class="bio-tags">
+                        <span class="bio-tag">AI</span>
+                        <span class="bio-tag">Developer</span>
+                        <span class="bio-tag">Delhi</span>
+                        <span class="bio-tag">Full Stack</span>
+                        <span class="bio-tag">SaaS Builder</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="quick-facts">
-                <div class="fact-item">
-                    <i class="fas fa-code"></i>
-                    <span>Full Stack Development</span>
-                </div>
-                <div class="fact-item">
-                    <i class="fas fa-brain"></i>
-                    <span>AI & Machine Learning</span>
-                </div>
-                <div class="fact-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    <span>Mobile App Development</span>
-                </div>
-                <div class="fact-item">
-                    <i class="fas fa-rocket"></i>
-                    <span>Product Builder</span>
-                </div>
-                <div class="fact-item">
-                    <i class="fas fa-lightbulb"></i>
-                    <span>Startup Enthusiast</span>
-                </div>
-                <div class="fact-item">
-                    <i class="fas fa-robot"></i>
-                    <span>LLM Fine-tuning</span>
-                </div>
+            <div class="extended-bio">
+                <p>
+                    Hey! I'm Yash Katiyar, a 20-year-old developer and builder based in Delhi. I love building real-world AI systems, especially in NLP and computer vision. I've worked with some cool tools like PyTorch, TensorFlow, and Hugging Face Transformers. I'm super passionate about startups, AI, and building products that make a difference. Want to hear about my projects or skills?
+                </p>
             </div>
         </div>
+        
         <div class="bottom-nav">
             <button class="back-btn" onclick="showMain()">
                 <i class="fas fa-arrow-left"></i> Back
@@ -150,8 +138,8 @@
     <!-- Projects Section -->
     <div class="section-view" id="projectsSection" style="display: none;">
         <div class="section-header">
-            <div class="avatar-small avatar-photo-small">
-                <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-11T23-00-37-541Z-5b1fbe36-chat-image-1765494037521-0.jpg" alt="Yash Katiyar">
+            <div class="avatar-small">
+                <i class="fas fa-briefcase"></i>
             </div>
             <h2>My Projects</h2>
         </div>
