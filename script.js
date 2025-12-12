@@ -6,7 +6,8 @@ const sections = {
     'projects': document.getElementById('projectsSection'),
     'skills': document.getElementById('skillsSection'),
     'education': document.getElementById('educationSection'),
-    'contact': document.getElementById('contactSection')
+    'contact': document.getElementById('contactSection'),
+    'chat': document.getElementById('chatSection')
 };
 
 navButtons.forEach(btn => {
@@ -64,6 +65,8 @@ function handleSearch() {
         showSection('education');
     } else if (query.includes('contact') || query.includes('email') || query.includes('reach')) {
         showSection('contact');
+    } else if (query.includes('chat') || query.includes('ai') || query.includes('assistant')) {
+        showSection('chat');
     } else {
         // Default to showing about section
         showSection('me');
@@ -229,7 +232,7 @@ window.addEventListener('load', () => {
 //     observer.observe(sections.projects);
 // }
 
-// ===== Chat Widget (LLM) =====
+// ===== Floating Chat Widget (LLM) =====
 const chatFab = document.getElementById("chatFab");
 const chatPanel = document.getElementById("chatPanel");
 const chatClose = document.getElementById("chatClose");
@@ -279,7 +282,10 @@ async function askLLM(userText) {
   const r = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages: [...history, { role: "user", content: userText }] }),
+    body: JSON.stringify({
+      message: userText,
+      history: history,
+    }),
   });
 
   const data = await r.json();
@@ -308,10 +314,127 @@ chatForm?.addEventListener("submit", async (e) => {
   }
 });
 
+// ===== AI Chat Section (main page) =====
+const aiChatForm = document.getElementById("aiChatForm");
+const aiChatInput = document.getElementById("aiChatInput");
+const aiChatBody = document.getElementById("aiChatBody");
+const aiSendBtn = document.getElementById("aiSend");
+const aiChips = document.querySelectorAll(".ai-chip");
+
+let aiChatHistory = [];
+let aiIsSending = false;
+let aiTypingNode = null;
+
+if (aiChatBody) {
+  const seed = aiChatBody.querySelector(".chat-msg.bot .bubble")?.innerText;
+  if (seed) aiChatHistory.push({ role: "assistant", content: seed });
+}
+
+function scrollChatBody() {
+  aiChatBody?.scrollTo({ top: aiChatBody.scrollHeight, behavior: "smooth" });
+}
+
+function appendAiMsg(role, text) {
+  const wrap = document.createElement("div");
+  wrap.className = `chat-msg ${role}`;
+  const bubble = document.createElement("div");
+  bubble.className = "bubble";
+  bubble.innerText = text;
+  wrap.appendChild(bubble);
+  aiChatBody?.appendChild(wrap);
+  scrollChatBody();
+}
+
+function showAiTyping() {
+  aiTypingNode = document.createElement("div");
+  aiTypingNode.className = "chat-msg bot";
+  aiTypingNode.innerHTML = `<div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  aiChatBody?.appendChild(aiTypingNode);
+  scrollChatBody();
+}
+
+function clearAiTyping() {
+  if (aiTypingNode) {
+    aiTypingNode.remove();
+    aiTypingNode = null;
+  }
+}
+
+function setAiSending(state) {
+  aiIsSending = state;
+  if (!aiSendBtn) return;
+  aiSendBtn.disabled = state;
+  aiSendBtn.textContent = state ? "Sending..." : "Send";
+}
+
+async function sendAiMessage(userText) {
+  if (!userText.trim() || aiIsSending) return;
+  appendAiMsg("user", userText);
+  aiChatHistory.push({ role: "user", content: userText });
+  setAiSending(true);
+  showAiTyping();
+
+  try {
+    const r = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: userText,
+        history: aiChatHistory.slice(-12),
+      }),
+    });
+
+    const data = await r.json();
+    clearAiTyping();
+
+    if (!r.ok) {
+      appendAiMsg("bot", "Model is unavailable right now. Please try again soon.");
+      return;
+    }
+
+    const reply = data?.text || "I could not generate a reply just now.";
+    appendAiMsg("bot", reply);
+    aiChatHistory.push({ role: "assistant", content: reply });
+  } catch (err) {
+    clearAiTyping();
+    appendAiMsg("bot", "Sorry — AI is not available right now. Please try again later.");
+    console.error(err);
+  } finally {
+    setAiSending(false);
+  }
+}
+
+aiChatForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const text = aiChatInput?.value || "";
+  if (!text.trim()) return;
+  aiChatInput.value = "";
+  sendAiMessage(text);
+});
+
+aiChatInput?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    aiChatForm?.requestSubmit();
+  }
+});
+
+aiChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const prompt = chip.getAttribute("data-prompt") || chip.textContent;
+    if (prompt) {
+      aiChatInput.value = prompt;
+      aiChatForm?.requestSubmit();
+    }
+  });
+});
+
 // ===== Smooth reveal animations on scroll =====
 (function setupReveal() {
   // add .reveal to cards/sections (customize selectors as per your HTML)
-  const targets = document.querySelectorAll("section, .card, .project-card-large, .skills-category, .education-item, .contact-card");
+  const targets = document.querySelectorAll(
+    "section, .card, .project-card-large, .skills-category, .education-item, .contact-card, .chat-explainer, .ai-chat-card, .model-info-card"
+  );
   targets.forEach((el) => el.classList.add("reveal"));
 
   const io = new IntersectionObserver(
