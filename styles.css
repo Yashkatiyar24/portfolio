@@ -56,30 +56,24 @@ body {
     justify-content: center;
 }
 
-/* Avatar Icon */
-.avatar-container {
-    margin-bottom: 1.5rem;
-    animation: fadeInDown 0.8s ease;
+/* Main Avatar on Landing Page */
+.main-avatar-container {
+    margin: 2rem 0;
+    animation: fadeInUp 1s ease 0.6s both;
 }
 
-.avatar-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #4a5568, #2d3748);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-.avatar-icon img {
-    width: 100%;
-    height: 100%;
+.main-avatar-image {
+    width: 300px;
+    height: 300px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(74, 144, 226, 0.3);
+    border: 3px solid rgba(74, 144, 226, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.main-avatar-image:hover {
+    transform: scale(1.05);
 }
 
 .avatar-small {
@@ -108,142 +102,6 @@ body {
     margin-bottom: 2rem;
     animation: fadeInDown 0.8s ease 0.4s both;
     letter-spacing: -2px;
-}
-
-/* Character Illustration */
-.character-container {
-    margin: 2rem 0;
-    animation: fadeInUp 1s ease 0.6s both;
-}
-
-.character {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.character-head {
-    position: relative;
-    width: 120px;
-    height: 140px;
-    background: linear-gradient(135deg, #d4a574, #c89968);
-    border-radius: 60px 60px 50px 50px;
-    margin-bottom: -20px;
-    z-index: 2;
-}
-
-.hair {
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    right: 10px;
-    height: 60px;
-    background: #4a3728;
-    border-radius: 50px 50px 0 0;
-}
-
-.glasses {
-    position: absolute;
-    top: 50px;
-    left: 15px;
-    right: 15px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.glass-left, .glass-right {
-    width: 35px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 3px solid #2d3748;
-    border-radius: 50%;
-}
-
-.glass-bridge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 15px;
-    height: 3px;
-    background: #2d3748;
-}
-
-.eyes {
-    position: absolute;
-    top: 55px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.eye {
-    width: 28px;
-    height: 28px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pupil {
-    width: 12px;
-    height: 12px;
-    background: #2d3748;
-    border-radius: 50%;
-    animation: eyeMove 3s ease-in-out infinite;
-}
-
-@keyframes eyeMove {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(3px); }
-}
-
-.laptop {
-    position: relative;
-    z-index: 1;
-}
-
-.laptop-screen {
-    width: 200px;
-    height: 130px;
-    background: linear-gradient(135deg, #4a5568, #2d3748);
-    border-radius: 8px 8px 0 0;
-    border: 8px solid #1a202c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.apple-logo {
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.1);
-}
-
-.laptop-base {
-    width: 240px;
-    height: 10px;
-    background: linear-gradient(135deg, #2d3748, #1a202c);
-    border-radius: 0 0 4px 4px;
-    position: relative;
-}
-
-.laptop-base::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 5px;
-    background: #1a202c;
-    border-radius: 0 0 4px 4px;
 }
 
 /* Search Container */
@@ -894,6 +752,11 @@ body {
 
     .greeting {
         font-size: 1.5rem;
+    }
+
+    .main-avatar-image {
+        width: 200px;
+        height: 200px;
     }
 
     .nav-buttons {
