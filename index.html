@@ -470,6 +470,35 @@
         </div>
     </div>
 
+    <!-- Floating Ask Me Anything Widget -->
+    <button id="chatFab" aria-label="Ask AI" title="Ask AI">✨</button>
+
+    <div id="chatPanel" class="chat-panel" aria-hidden="true">
+        <div class="chat-header">
+            <div class="chat-title">
+                <div class="dot"></div>
+                <div>
+                    <div class="t1">Ask about Yash</div>
+                    <div class="t2">Projects • Skills • Contact</div>
+                </div>
+            </div>
+            <button id="chatClose" class="chat-close" aria-label="Close">✕</button>
+        </div>
+
+        <div id="chatBody" class="chat-body">
+            <div class="msg bot">
+                <div class="bubble">
+                    Hi 👋 I’m Yash’s portfolio assistant. Ask me about projects like <b>Salasar</b>, <b>GenBook</b>, or <b>FinSight</b>.
+                </div>
+            </div>
+        </div>
+
+        <form id="chatForm" class="chat-input">
+            <input id="chatInput" type="text" placeholder="Ask something (e.g., ‘Which project is deployed?’)" autocomplete="off" />
+            <button id="chatSend" type="submit">Send</button>
+        </form>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

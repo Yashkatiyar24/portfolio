@@ -228,3 +228,100 @@ window.addEventListener('load', () => {
 // if (sections.projects) {
 //     observer.observe(sections.projects);
 // }
+
+// ===== Chat Widget (LLM) =====
+const chatFab = document.getElementById("chatFab");
+const chatPanel = document.getElementById("chatPanel");
+const chatClose = document.getElementById("chatClose");
+const chatBody = document.getElementById("chatBody");
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+
+function openChat() {
+  chatPanel.classList.add("open");
+  chatPanel.setAttribute("aria-hidden", "false");
+  setTimeout(() => chatInput?.focus(), 80);
+}
+function closeChat() {
+  chatPanel.classList.remove("open");
+  chatPanel.setAttribute("aria-hidden", "true");
+}
+
+chatFab?.addEventListener("click", openChat);
+chatClose?.addEventListener("click", closeChat);
+
+// close on ESC
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && chatPanel?.classList.contains("open")) closeChat();
+});
+
+function addMsg(role, html) {
+  const wrap = document.createElement("div");
+  wrap.className = `msg ${role}`;
+  wrap.innerHTML = `<div class="bubble">${html}</div>`;
+  chatBody.appendChild(wrap);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  return wrap;
+}
+
+function addTyping() {
+  return addMsg("bot", `<div class="typing"><span></span><span></span><span></span></div>`);
+}
+
+async function askLLM(userText) {
+  // gather last few messages for context
+  const history = Array.from(chatBody.querySelectorAll(".msg")).slice(-10).map((node) => {
+    const isUser = node.classList.contains("user");
+    const text = node.querySelector(".bubble")?.innerText ?? "";
+    return { role: isUser ? "user" : "assistant", content: text };
+  });
+
+  const r = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages: [...history, { role: "user", content: userText }] }),
+  });
+
+  const data = await r.json();
+  if (!r.ok) throw new Error(data?.error || "Chat failed");
+  return data.text;
+}
+
+chatForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const text = (chatInput.value || "").trim();
+  if (!text) return;
+
+  addMsg("user", text);
+  chatInput.value = "";
+
+  const typing = addTyping();
+
+  try {
+    const reply = await askLLM(text);
+    typing.remove();
+    addMsg("bot", reply.replace(/\n/g, "<br/>"));
+  } catch (err) {
+    typing.remove();
+    addMsg("bot", "Sorry — AI is not available right now. Please try again later.");
+    console.error(err);
+  }
+});
+
+// ===== Smooth reveal animations on scroll =====
+(function setupReveal() {
+  // add .reveal to cards/sections (customize selectors as per your HTML)
+  const targets = document.querySelectorAll("section, .card, .project-card-large, .skills-category, .education-item, .contact-card");
+  targets.forEach((el) => el.classList.add("reveal"));
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("in");
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  targets.forEach((el) => io.observe(el));
+})();
