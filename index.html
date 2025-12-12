@@ -48,10 +48,6 @@
                 <i class="fas fa-address-book"></i>
                 <span>Contact</span>
             </button>
-            <button class="nav-btn" data-section="chat">
-                <i class="fas fa-robot"></i>
-                <span>Chat with my AI</span>
-            </button>
         </div>
     </div>
 
@@ -472,116 +468,6 @@
                 <i class="fas fa-arrow-left"></i> Back
             </button>
         </div>
-    </div>
-
-    <!-- Chat with my AI -->
-    <div class="section-view" id="chatSection" style="display: none;">
-        <div class="section-header">
-            <div class="avatar-small">
-                <i class="fas fa-robot"></i>
-            </div>
-            <h2>Chat with my AI</h2>
-        </div>
-
-        <div class="chat-grid">
-            <div class="chat-explainer reveal">
-                <p class="eyebrow">AI Chatbot • Story</p>
-                <h3 class="glow-text">Fine-tuned SLM for my portfolio</h3>
-                <p class="story-copy">
-                    For my portfolio I took an SLM from Hugging Face, trained it with LoRA, and fed it scraped data collected using <code>BeautifulSoup</code>.
-                    It’s hosted via a Hugging Face endpoint with extra helpers for cost + hosting observability, and I can plug in Phoenix/MLflow for tracing and experiments.
-                </p>
-                <div class="story-pills">
-                    <span class="pill">LoRA Finetune</span>
-                    <span class="pill">bs4 Scraped Data</span>
-                    <span class="pill">Cost + Hosting Tools</span>
-                    <span class="pill">Tracing ready (Phoenix/MLflow)</span>
-                </div>
-                <div class="prompt-chips">
-                    <button class="ai-chip" data-prompt="Tell me about FinSight.ai">Tell me about FinSight.ai</button>
-                    <button class="ai-chip" data-prompt="Show my best projects">Show my best projects</button>
-                    <button class="ai-chip" data-prompt="What stack do you use?">What stack do you use?</button>
-                    <button class="ai-chip" data-prompt="How did you train your model?">How did you train your model?</button>
-                </div>
-            </div>
-
-            <div class="chat-panels">
-                <div class="ai-chat-card reveal">
-                    <div class="chat-topbar">
-                        <div>
-                            <p class="eyebrow">Live Assistant</p>
-                            <h4>Ask about my work</h4>
-                        </div>
-                        <div class="badge">Streaming-ready</div>
-                    </div>
-                    <div id="aiChatBody" class="ai-chat-body">
-                        <div class="chat-msg bot">
-                            <div class="bubble">
-                                Hey, I’m a fine-tuned Hugging Face SLM trained with LoRA on my portfolio notes (scraped with bs4).
-                                Ask about projects like Salasar, GenBook, or FinSight, or how I trained/deployed this model.
-                            </div>
-                        </div>
-                    </div>
-                    <form id="aiChatForm" class="ai-chat-form">
-                        <textarea id="aiChatInput" rows="3" placeholder="Ask anything about Yash, his projects, or how the SLM was trained..." autocomplete="off"></textarea>
-                        <button id="aiSend" type="submit">Send</button>
-                        <div class="form-hint">Enter to send • Shift+Enter for new line • Send disabled while processing</div>
-                    </form>
-                </div>
-
-                <div class="model-info-card reveal">
-                    <p class="eyebrow">Model Info</p>
-                    <h4>How this SLM was built</h4>
-                    <ul class="info-list">
-                        <li><span>Base:</span> Hugging Face SLM (story-first, model name configurable)</li>
-                        <li><span>Fine-tune:</span> LoRA adapters</li>
-                        <li><span>Data:</span> Portfolio content scraped with bs4</li>
-                        <li><span>Ops:</span> Cost + hosting helpers; Phoenix/MLflow ready for tracing & experiments</li>
-                        <li><span>Endpoint:</span> HF Inference / self-hosted URL via env</li>
-                        <li><span>Safety:</span> Basic rate limit + focused prompt</li>
-                    </ul>
-                    <div class="info-footer">
-                        <span class="pill subtle">Non-streaming fallback</span>
-                        <span class="pill subtle">Portfolio-focused responses</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-nav">
-            <button class="back-btn" onclick="showMain()">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
-        </div>
-    </div>
-
-    <!-- Floating Ask Me Anything Widget -->
-    <button id="chatFab" aria-label="Ask AI" title="Ask AI">✨</button>
-
-    <div id="chatPanel" class="chat-panel" aria-hidden="true">
-        <div class="chat-header">
-            <div class="chat-title">
-                <div class="dot"></div>
-                <div>
-                    <div class="t1">Ask about Yash</div>
-                    <div class="t2">Projects • Skills • Contact</div>
-                </div>
-            </div>
-            <button id="chatClose" class="chat-close" aria-label="Close">✕</button>
-        </div>
-
-        <div id="chatBody" class="chat-body">
-            <div class="msg bot">
-                <div class="bubble">
-                    Hi 👋 I’m Yash’s portfolio assistant. Ask me about projects like <b>Salasar</b>, <b>GenBook</b>, or <b>FinSight</b>.
-                </div>
-            </div>
-        </div>
-
-        <form id="chatForm" class="chat-input">
-            <input id="chatInput" type="text" placeholder="Ask something (e.g., ‘Which project is deployed?’)" autocomplete="off" />
-            <button id="chatSend" type="submit">Send</button>
-        </form>
     </div>
 
     <script src="script.js"></script>
