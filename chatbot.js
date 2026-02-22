@@ -12,12 +12,13 @@ class PortfolioChatbot {
         // Keyword patterns for intelligent routing
         this.patterns = {
             girlfriend: {
-                keywords: ['girlfriend', 'gf', 'partner', 'dating', 'relationship'],
+                keywords: ['girlfriend', 'gf', 'partner', 'dating', 'relationship', 'wife', 'married'],
                 response: "Her name is Sonakshiii and I love her so much ❤️",
-                priority: 1 // Highest priority - override everything
+                priority: 1, // Highest priority - override everything
+                action: null // No navigation action
             },
             about: {
-                keywords: ['who is yash', 'about you', 'about yash', 'who are you', 'tell me about yourself', 'introduce yourself'],
+                keywords: ['who is yash', 'about yash', 'who are you', 'tell me about yourself', 'introduce yourself', 'your background'],
                 action: 'scrollToSection',
                 target: 'meSection',
                 response: "Let me show you more about me! 👨‍💻"
@@ -118,12 +119,13 @@ class PortfolioChatbot {
         // Small delay for better UX
         await new Promise(resolve => setTimeout(resolve, 300));
 
-        // Priority 1: Check girlfriend override (highest priority)
+        // Priority 1: Check girlfriend override (HIGHEST PRIORITY - must check first)
         const girlfriendMatch = this.checkGirlfriendQuery(normalizedMessage);
         if (girlfriendMatch) {
             this.showResponse(girlfriendMatch.response);
+            // NO ACTION - just show response and return
             this.isProcessing = false;
-            return;
+            return; // Exit immediately, don't check other patterns
         }
 
         // Priority 2: Check project-specific keywords
@@ -159,11 +161,17 @@ class PortfolioChatbot {
     }
 
     /**
-     * Check for girlfriend-related queries (highest priority)
+     * Check for girlfriend-related queries (HIGHEST PRIORITY)
+     * Uses word boundary matching to avoid false positives
      */
     checkGirlfriendQuery(message) {
         const pattern = this.patterns.girlfriend;
-        const hasMatch = pattern.keywords.some(keyword => message.includes(keyword));
+        
+        // Use word boundary regex for precise matching
+        const hasMatch = pattern.keywords.some(keyword => {
+            const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+            return regex.test(message);
+        });
         
         if (hasMatch) {
             return pattern;
@@ -190,10 +198,15 @@ class PortfolioChatbot {
 
     /**
      * Check for section navigation keywords
+     * IMPORTANT: Skip girlfriend pattern as it's handled separately
      */
     checkSectionKeywords(message) {
         for (const [key, pattern] of Object.entries(this.patterns)) {
+            // Skip girlfriend pattern - it's handled with highest priority
             if (key === 'girlfriend') continue;
+            
+            // Skip if pattern has no action (safety check)
+            if (!pattern.action) continue;
             
             const hasMatch = pattern.keywords.some(keyword => {
                 return message.includes(keyword);
@@ -245,6 +258,9 @@ class PortfolioChatbot {
      * Execute navigation action
      */
     executeAction(pattern) {
+        // Only execute if action exists
+        if (!pattern.action) return;
+        
         if (pattern.action === 'scrollToSection') {
             this.scrollToSection(pattern.target);
         } else if (pattern.action === 'scrollToProject') {
