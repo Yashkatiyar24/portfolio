@@ -6,6 +6,7 @@
     <title>Yash Katiyar - AI Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="projects-enhanced.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -343,10 +344,63 @@
         </div>
     </div>
 
+    <!-- Chatbot UI -->
+    <div id="chatContainer" style="display: none;">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-header-text">
+                    <h3>Yash's AI Assistant</h3>
+                    <p class="chat-status">
+                        <span class="status-dot"></span>
+                        Online
+                    </p>
+                </div>
+            </div>
+            <button class="chat-close-btn" onclick="toggleChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div id="chatMessages">
+            <div class="chat-welcome">
+                <div class="chat-welcome-icon">👋</div>
+                <h4>Hi! I'm Yash's AI Assistant</h4>
+                <p>Ask me anything about Yash's projects, skills, or background!</p>
+                <div class="chat-suggestions">
+                    <div class="suggestion-chip" onclick="sendSuggestion('Show me projects')">
+                        🚀 Projects
+                    </div>
+                    <div class="suggestion-chip" onclick="sendSuggestion('Tell me about Salasar')">
+                        🏨 Salasar App
+                    </div>
+                    <div class="suggestion-chip" onclick="sendSuggestion('What are your skills?')">
+                        💻 Skills
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" placeholder="Type your message..." id="chatInput">
+            <button class="chat-send-btn" id="chatSendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button id="chatToggleBtn" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </button>
+
     <!-- Load scripts in correct order -->
     <script src="projects-data.js"></script>
     <script src="script.js"></script>
     <script src="projects-enhanced.js"></script>
+    <script src="chatbot.js"></script>
     
     <script>
         // Resume dropdown toggle
@@ -365,6 +419,57 @@
                     dropdown.classList.remove('active');
                 }
             });
+        });
+
+        // Chat toggle functionality
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            const chatToggleBtn = document.getElementById('chatToggleBtn');
+            
+            if (chatContainer.style.display === 'none' || !chatContainer.classList.contains('active')) {
+                chatContainer.style.display = 'flex';
+                setTimeout(() => chatContainer.classList.add('active'), 10);
+                chatToggleBtn.classList.add('active');
+                chatToggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                chatContainer.classList.remove('active');
+                setTimeout(() => chatContainer.style.display = 'none', 300);
+                chatToggleBtn.classList.remove('active');
+                chatToggleBtn.innerHTML = '<i class="fas fa-comments"></i>';
+            }
+        }
+
+        // Send suggestion
+        function sendSuggestion(message) {
+            const chatInput = document.getElementById('chatInput');
+            chatInput.value = message;
+            if (portfolioChatbot) {
+                portfolioChatbot.handleUserMessage(message);
+                chatInput.value = '';
+            }
+        }
+
+        // Setup chat input handler for chatbot UI
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.getElementById('chatInput');
+            const chatSendBtn = document.getElementById('chatSendBtn');
+            
+            if (chatInput && chatSendBtn) {
+                const handleChatSend = () => {
+                    const message = chatInput.value.trim();
+                    if (message && portfolioChatbot) {
+                        portfolioChatbot.handleUserMessage(message);
+                        chatInput.value = '';
+                    }
+                };
+
+                chatSendBtn.addEventListener('click', handleChatSend);
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleChatSend();
+                    }
+                });
+            }
         });
     </script>
 </body>
