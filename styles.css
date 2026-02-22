@@ -687,6 +687,195 @@ body {
     font-size: 0.9rem;
 }
 
+/* Hire Me Card - Premium Styling */
+.hire-me-card {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(26, 26, 26, 0.9));
+    border: 2px solid rgba(74, 144, 226, 0.4);
+    box-shadow: 0 8px 32px rgba(74, 144, 226, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.hire-me-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.hire-me-card:hover {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), rgba(26, 26, 26, 0.95));
+    border-color: var(--primary-blue);
+    box-shadow: 0 12px 48px rgba(74, 144, 226, 0.3);
+}
+
+.hire-me-card i.fa-rocket {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #4A90E2, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hire-me-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: left;
+    margin-top: 0.5rem;
+}
+
+.hire-me-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hire-btn {
+    padding: 0.85rem 1.5rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.primary-hire-btn {
+    background: linear-gradient(135deg, var(--primary-blue), #3a7bc8);
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.primary-hire-btn:hover {
+    background: linear-gradient(135deg, #3a7bc8, var(--primary-blue));
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+}
+
+.resume-dropdown {
+    position: relative;
+}
+
+.resume-btn {
+    background: rgba(74, 144, 226, 0.15);
+    color: var(--primary-blue);
+    border: 2px solid rgba(74, 144, 226, 0.4);
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.2);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(74, 144, 226, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(74, 144, 226, 0.4);
+    }
+}
+
+.resume-btn:hover {
+    background: rgba(74, 144, 226, 0.25);
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.dropdown-icon {
+    font-size: 0.75rem;
+    transition: transform 0.3s;
+}
+
+.resume-dropdown.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.resume-dropdown-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.resume-dropdown.active .resume-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.resume-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.resume-option:last-child {
+    border-bottom: none;
+}
+
+.resume-option:hover {
+    background: rgba(74, 144, 226, 0.15);
+}
+
+.resume-option i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+}
+
+.resume-option div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: left;
+}
+
+.resume-option strong {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.resume-option small {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
 /* Bottom Navigation */
 .bottom-nav {
     display: flex;
@@ -776,6 +965,10 @@ body {
 
     .contact-links-grid {
         grid-template-columns: 1fr;
+    }
+
+    .hire-me-card {
+        grid-column: span 1;
     }
 
     .carousel-btn {
@@ -883,5 +1076,14 @@ body {
 
     .project-tech-tags {
         justify-content: center;
+    }
+
+    .hire-me-buttons {
+        gap: 0.5rem;
+    }
+
+    .hire-btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
     }
 }
