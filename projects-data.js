@@ -1,6 +1,21 @@
 // Structured project data configuration
 const projectsData = [
     {
+        id: 'smartorbit',
+        title: 'SmartOrbit',
+        category: 'iOS Application',
+        isLive: false,
+        description: 'Personal exam preparation companion built with SwiftUI. Simulates real exam conditions with full-screen distraction-free environment, smart countdown timer, question palette, and detailed performance reports. Practice for Google, Amazon, Microsoft, Meta, TCS, and Infosys placement tests.',
+        image: null,
+        icon: 'fab fa-apple',
+        techStack: ['SwiftUI', 'Combine', 'MVVM', 'Swift 5.10+'],
+        githubUrl: 'https://github.com/Yashkatiyar24/SmartOrbit',
+        demoVideo: {
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-05-28-299Z-a0350286-chat-video-1771769128195-0.mp4'
+        }
+    },
+    {
         id: 'salasar',
         title: 'Salasar Stay Manager',
         category: 'Android Application',
