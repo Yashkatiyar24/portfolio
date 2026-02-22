@@ -12,13 +12,13 @@ class PortfolioChatbot {
         // Keyword patterns for intelligent routing
         this.patterns = {
             girlfriend: {
-                keywords: ['girlfriend', 'gf', 'partner', 'dating', 'relationship', 'wife', 'married'],
+                keywords: ['girlfriend', 'gf', 'partner', 'dating', 'relationship', 'wife', 'married', 'love life', 'significant other'],
                 response: "Her name is Sonakshiii and I love her so much ❤️",
                 priority: 1, // Highest priority - override everything
-                action: null // No navigation action
+                action: null // No navigation action - JUST SHOW RESPONSE
             },
             about: {
-                keywords: ['who is yash', 'about yash', 'who are you', 'tell me about yourself', 'introduce yourself', 'your background'],
+                keywords: ['tell me about yourself', 'introduce yourself', 'your background', 'about yash katiyar'],
                 action: 'scrollToSection',
                 target: 'meSection',
                 response: "Let me show you more about me! 👨‍💻"
@@ -119,13 +119,14 @@ class PortfolioChatbot {
         // Small delay for better UX
         await new Promise(resolve => setTimeout(resolve, 300));
 
-        // Priority 1: Check girlfriend override (HIGHEST PRIORITY - must check first)
+        // ===== PRIORITY 1: GIRLFRIEND QUERY (ABSOLUTE HIGHEST PRIORITY) =====
+        // Check this FIRST before anything else
         const girlfriendMatch = this.checkGirlfriendQuery(normalizedMessage);
         if (girlfriendMatch) {
+            console.log('✅ Girlfriend match found - showing response only');
             this.showResponse(girlfriendMatch.response);
-            // NO ACTION - just show response and return
             this.isProcessing = false;
-            return; // Exit immediately, don't check other patterns
+            return; // EXIT IMMEDIATELY - don't check anything else
         }
 
         // Priority 2: Check project-specific keywords
@@ -161,19 +162,25 @@ class PortfolioChatbot {
     }
 
     /**
-     * Check for girlfriend-related queries (HIGHEST PRIORITY)
-     * Uses word boundary matching to avoid false positives
+     * Check for girlfriend-related queries (ABSOLUTE HIGHEST PRIORITY)
+     * Uses strict word boundary matching
      */
     checkGirlfriendQuery(message) {
         const pattern = this.patterns.girlfriend;
         
-        // Use word boundary regex for precise matching
+        // Check each keyword with word boundaries
         const hasMatch = pattern.keywords.some(keyword => {
+            // For multi-word keywords, use exact phrase matching
+            if (keyword.includes(' ')) {
+                return message.includes(keyword);
+            }
+            // For single words, use word boundary
             const regex = new RegExp(`\\b${keyword}\\b`, 'i');
             return regex.test(message);
         });
         
         if (hasMatch) {
+            console.log('🎯 Girlfriend keyword matched:', message);
             return pattern;
         }
         return null;
@@ -198,21 +205,30 @@ class PortfolioChatbot {
 
     /**
      * Check for section navigation keywords
-     * IMPORTANT: Skip girlfriend pattern as it's handled separately
+     * CRITICAL: This must NOT match girlfriend queries
      */
     checkSectionKeywords(message) {
         for (const [key, pattern] of Object.entries(this.patterns)) {
-            // Skip girlfriend pattern - it's handled with highest priority
+            // SKIP girlfriend pattern - it's handled separately with highest priority
             if (key === 'girlfriend') continue;
             
-            // Skip if pattern has no action (safety check)
+            // SKIP if pattern has no action
             if (!pattern.action) continue;
             
+            // Use EXACT phrase matching for multi-word keywords
+            // This prevents "who is your girlfriend" from matching "who are you"
             const hasMatch = pattern.keywords.some(keyword => {
-                return message.includes(keyword);
+                // For multi-word phrases, require exact match
+                if (keyword.includes(' ')) {
+                    return message.includes(keyword);
+                }
+                // For single words, use word boundary
+                const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+                return regex.test(message);
             });
 
             if (hasMatch) {
+                console.log('📍 Section match:', key, message);
                 return pattern;
             }
         }
@@ -224,7 +240,10 @@ class PortfolioChatbot {
      */
     checkFallbackResponses(message) {
         for (const [key, pattern] of Object.entries(this.fallbackResponses)) {
-            const hasMatch = pattern.keywords.some(keyword => message.includes(keyword));
+            const hasMatch = pattern.keywords.some(keyword => {
+                const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+                return regex.test(message);
+            });
             
             if (hasMatch) {
                 return pattern.responses[Math.floor(Math.random() * pattern.responses.length)];
@@ -256,10 +275,16 @@ class PortfolioChatbot {
 
     /**
      * Execute navigation action
+     * IMPORTANT: Only execute if action exists (girlfriend pattern has action: null)
      */
     executeAction(pattern) {
-        // Only execute if action exists
-        if (!pattern.action) return;
+        // Safety check - only execute if action exists
+        if (!pattern.action) {
+            console.log('⚠️ No action to execute');
+            return;
+        }
+        
+        console.log('🚀 Executing action:', pattern.action);
         
         if (pattern.action === 'scrollToSection') {
             this.scrollToSection(pattern.target);
@@ -401,6 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleSend = () => {
             const message = searchInput.value.trim();
             if (message && portfolioChatbot) {
+                console.log('📨 User message:', message);
                 portfolioChatbot.handleUserMessage(message);
                 searchInput.value = '';
             }
