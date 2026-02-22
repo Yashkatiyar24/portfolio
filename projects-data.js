@@ -1,6 +1,21 @@
 // Structured project data configuration
 const projectsData = [
     {
+        id: 'rive-learning',
+        title: 'RIVE Learning App',
+        category: 'React Native Application',
+        isLive: false,
+        description: 'Interactive learning application featuring a dynamic animated learning assistant powered by RIVE animations. The assistant reacts to user actions, progress, and performance in real-time using RIVE State Machines. Built with Expo Router for navigation and Zustand for global state management.',
+        image: null,
+        icon: 'fas fa-graduation-cap',
+        techStack: ['React Native', 'Expo', 'RIVE', 'Zustand'],
+        githubUrl: 'https://github.com/Yashkatiyar24/RIVE-Learning-App',
+        demoVideo: {
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-26-20-737Z-16be897b-chat-video-1771770380558-0.mov'
+        }
+    },
+    {
         id: 'shopease',
         title: 'Shopease',
         category: 'React Native Application',
