@@ -749,6 +749,7 @@ body {
 }
 
 .hire-btn {
+    width: 100%;
     padding: 0.85rem 1.5rem;
     border-radius: 12px;
     font-size: 0.95rem;
@@ -778,6 +779,7 @@ body {
 
 .resume-dropdown {
     position: relative;
+    width: 100%;
 }
 
 .resume-btn {
