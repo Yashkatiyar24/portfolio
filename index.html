@@ -294,6 +294,46 @@
                     <span>LinkedIn</span>
                     <small>Yash Katiyar</small>
                 </a>
+                
+                <!-- New Hire Me Card -->
+                <div class="contact-card hire-me-card">
+                    <i class="fas fa-rocket"></i>
+                    <span>Hire Me</span>
+                    <small class="hire-me-description">Available for freelance and contract work in Mobile App Development (Android, iOS, React Native), AI-powered applications, and Full Stack systems. I build production-ready, scalable apps with clean architecture and modern UI.</small>
+                    <div class="hire-me-buttons">
+                        <a href="mailto:yashkatiyar2405@gmail.com?subject=Freelance%20Project%20Inquiry" class="hire-btn primary-hire-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Hire Me
+                        </a>
+                        <div class="resume-dropdown">
+                            <button class="hire-btn resume-btn" onclick="toggleResumeDropdown(event)">
+                                <i class="fas fa-file-download"></i>
+                                Download Resume
+                                <i class="fas fa-chevron-down dropdown-icon"></i>
+                            </button>
+                            <div class="resume-dropdown-menu">
+                                <a href="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-54-48-978Z-629bef0b-Yashkatiyar_App.pdf" 
+                                   download="Yash_Katiyar_App_Developer_Resume.pdf" 
+                                   class="resume-option">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <div>
+                                        <strong>App Developer</strong>
+                                        <small>Mobile & Full Stack</small>
+                                    </div>
+                                </a>
+                                <a href="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-54-49-116Z-ec440bab-Yashkatiyar_resumeAI.pdf" 
+                                   download="Yash_Katiyar_AI_ML_Resume.pdf" 
+                                   class="resume-option">
+                                    <i class="fas fa-brain"></i>
+                                    <div>
+                                        <strong>AI/ML Engineer</strong>
+                                        <small>AI & Data Science</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="bottom-nav">
@@ -307,5 +347,25 @@
     <script src="projects-data.js"></script>
     <script src="script.js"></script>
     <script src="projects-enhanced.js"></script>
+    
+    <script>
+        // Resume dropdown toggle
+        function toggleResumeDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const dropdown = event.currentTarget.parentElement;
+            dropdown.classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.resume-dropdown');
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
