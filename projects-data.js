@@ -1,51 +1,6 @@
 // Structured project data configuration
 const projectsData = [
     {
-        id: 'rive-learning',
-        title: 'RIVE Learning App',
-        category: 'React Native Application',
-        isLive: false,
-        description: 'Interactive learning application featuring a dynamic animated learning assistant powered by RIVE animations. The assistant reacts to user actions, progress, and performance in real-time using RIVE State Machines. Built with Expo Router for navigation and Zustand for global state management.',
-        image: null,
-        icon: 'fas fa-graduation-cap',
-        techStack: ['React Native', 'Expo', 'RIVE', 'Zustand'],
-        githubUrl: 'https://github.com/Yashkatiyar24/RIVE-Learning-App',
-        demoVideo: {
-            type: 'mp4',
-            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-26-20-737Z-16be897b-chat-video-1771770380558-0.mov'
-        }
-    },
-    {
-        id: 'shopease',
-        title: 'Shopease',
-        category: 'React Native Application',
-        isLive: false,
-        description: 'Modern minimalist e-commerce mobile app built with React Native and Expo. Features product browsing with real-time search, cart management with swipe gestures, multi-step checkout flow, and persistent cart storage using AsyncStorage. Clean UI with smooth animations and INR currency support.',
-        image: null,
-        icon: 'fas fa-shopping-cart',
-        techStack: ['React Native', 'Expo', 'TypeScript', 'Context API'],
-        githubUrl: 'https://github.com/Yashkatiyar24/E-commerce-app',
-        demoVideo: {
-            type: 'mp4',
-            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-13-25-828Z-d677c427-chat-video-1771769605737-0.mp4'
-        }
-    },
-    {
-        id: 'smartorbit',
-        title: 'SmartOrbit',
-        category: 'iOS Application',
-        isLive: false,
-        description: 'Personal exam preparation companion built with SwiftUI. Simulates real exam conditions with full-screen distraction-free environment, smart countdown timer, question palette, and detailed performance reports. Practice for Google, Amazon, Microsoft, Meta, TCS, and Infosys placement tests.',
-        image: null,
-        icon: 'fab fa-apple',
-        techStack: ['SwiftUI', 'Combine', 'MVVM', 'Swift 5.10+'],
-        githubUrl: 'https://github.com/Yashkatiyar24/SmartOrbit',
-        demoVideo: {
-            type: 'mp4',
-            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-05-28-299Z-a0350286-chat-video-1771769128195-0.mp4'
-        }
-    },
-    {
         id: 'salasar',
         title: 'Salasar Stay Manager',
         category: 'Android Application',
@@ -57,6 +12,48 @@ const projectsData = [
         demoVideo: {
             type: 'youtube',
             url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
+        }
+    },
+    {
+        id: 'smartorbit',
+        title: 'SmartOrbit',
+        category: 'iOS Application',
+        isLive: false,
+        description: 'Personal exam preparation companion built with SwiftUI. Simulates real exam conditions with full-screen distraction-free environment, smart countdown timer, question palette, and detailed performance reports. Practice for Google, Amazon, Microsoft, Meta, TCS, and Infosys placement tests.',
+        image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-35-51-718Z-f823da4e-chat-image-1771770951699-0.jpg',
+        techStack: ['SwiftUI', 'Combine', 'MVVM', 'Swift 5.10+'],
+        githubUrl: 'https://github.com/Yashkatiyar24/SmartOrbit',
+        demoVideo: {
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-05-28-299Z-a0350286-chat-video-1771769128195-0.mp4'
+        }
+    },
+    {
+        id: 'shopease',
+        title: 'Shopease',
+        category: 'React Native Application',
+        isLive: false,
+        description: 'Modern minimalist e-commerce mobile app built with React Native and Expo. Features product browsing with real-time search, cart management with swipe gestures, multi-step checkout flow, and persistent cart storage using AsyncStorage. Clean UI with smooth animations and INR currency support.',
+        image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-35-51-829Z-700ee216-chat-image-1771770951809-1.jpg',
+        techStack: ['React Native', 'Expo', 'TypeScript', 'Context API'],
+        githubUrl: 'https://github.com/Yashkatiyar24/E-commerce-app',
+        demoVideo: {
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-13-25-828Z-d677c427-chat-video-1771769605737-0.mp4'
+        }
+    },
+    {
+        id: 'rive-learning',
+        title: 'RIVE Learning App',
+        category: 'React Native Application',
+        isLive: false,
+        description: 'Interactive learning application featuring a dynamic animated learning assistant powered by RIVE animations. The assistant reacts to user actions, progress, and performance in real-time using RIVE State Machines. Built with Expo Router for navigation and Zustand for global state management.',
+        image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-35-51-941Z-e01f4dd7-chat-image-1771770951920-2.jpg',
+        techStack: ['React Native', 'Expo', 'RIVE', 'Zustand'],
+        githubUrl: 'https://github.com/Yashkatiyar24/RIVE-Learning-App',
+        demoVideo: {
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-26-20-737Z-16be897b-chat-video-1771770380558-0.mov'
         }
     },
     {
