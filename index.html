@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yash Katiyar - AI Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="projects-enhanced.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -114,6 +115,14 @@
             </div>
             <h2>My Projects</h2>
         </div>
+        
+        <!-- Filter Tabs -->
+        <div class="project-filters-container">
+            <div class="project-filters" id="projectFilters">
+                <!-- Filters will be dynamically generated -->
+            </div>
+        </div>
+        
         <div class="section-content">
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn" id="prevBtn">
@@ -121,179 +130,7 @@
                 </button>
                 
                 <div class="projects-carousel">
-                    <!-- Project 1: Salasar -->
-                    <div class="project-card-large" data-index="0">
-                        <div class="project-tag">Full Stack</div>
-                        <h3>Salasar Stay Manager</h3>
-                        <div class="project-preview project-screenshot">
-                            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/fc2551b8-be81-481c-9120-28eb9191a9cf/2025-12-12T14-18-52-572Z-dce0d64f-chat-image-1765549132553-1.jpg" alt="Salasar Stay Manager">
-                        </div>
-                        <p class="project-desc">
-                            Production-ready hotel management mobile app built with React Native and Expo. Features real-time booking management, room tracking, customer management, and comprehensive dashboard analytics.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Expo</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">Firebase</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/app-salasar-main-main" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 2: GENBOOK.AI -->
-                    <div class="project-card-large" data-index="1">
-                        <div class="project-tag">AI Platform</div>
-                        <h3>GENBOOK.AI</h3>
-                        <div class="project-preview project-screenshot">
-                            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-12T00-00-08-763Z-eeb322e4-chat-image-1765497608735-0.jpg" alt="GENBOOK.AI">
-                        </div>
-                        <p class="project-desc">
-                            AI-powered book generation platform built with TypeScript and Next.js. Leverages advanced language models to create comprehensive book content with intelligent chapter structuring and content generation.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">AI/ML</span>
-                            <span class="tech-tag">OpenAI</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/GENBOOK.AI" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 3: WEB-RAG-AI-ASSISTANT -->
-                    <div class="project-card-large" data-index="2">
-                        <div class="project-tag">RAG/AI</div>
-                        <h3>Web RAG AI Assistant</h3>
-                        <div class="project-preview project-screenshot">
-                            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/fc2551b8-be81-481c-9120-28eb9191a9cf/2025-12-23T19-57-41-205Z-d7c7db62-chat-image-1766519861186-0.jpg" alt="Web RAG AI Assistant">
-                        </div>
-                        <p class="project-desc">
-                            Real-time web AI assistant powered by Ollama (local LLM), DuckDuckGo web search, and LangChain RAG. Combines local language models with web search capabilities to provide intelligent, context-aware responses with source citations.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">LangChain</span>
-                            <span class="tech-tag">RAG</span>
-                            <span class="tech-tag">Ollama</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/WEB-RAG-AI-ASSISTANT" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 4: Movie Recommendation -->
-                    <div class="project-card-large" data-index="3">
-                        <div class="project-tag">ML/Recommendation</div>
-                        <h3>Movie Recommender System</h3>
-                        <div class="project-preview project-screenshot">
-                            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-12T00-00-08-988Z-6e11d10b-chat-image-1765497608957-1.jpg" alt="Movie Recommender">
-                        </div>
-                        <p class="project-desc">
-                            Intelligent movie recommendation system powered by TMDb and machine learning. Uses collaborative filtering and content-based algorithms to suggest personalized movie recommendations based on user preferences.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Streamlit</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/Movie-recommendation" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 5: Multimodal AI Visual Question Answering -->
-                    <div class="project-card-large" data-index="4">
-                        <div class="project-tag">Multimodal AI</div>
-                        <h3>Visual Question Answering</h3>
-                        <div class="project-preview project-screenshot">
-                            <img src="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/fc2551b8-be81-481c-9120-28eb9191a9cf/2025-12-23T19-57-41-322Z-1c45df81-chat-image-1766519861304-1.jpg" alt="Visual Question Answering">
-                        </div>
-                        <p class="project-desc">
-                            Upload an image and ask natural-language questions about it — the model answers based on visual understanding. Uses ViLT (Vision-and-Language Transformer), a pretrained multimodal model fine-tuned for Visual Question Answering (VQA) that jointly reasons over image and text inputs.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">ViLT</span>
-                            <span class="tech-tag">Transformers</span>
-                            <span class="tech-tag">Gradio</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/Multimodal-AI-Visual-Question-Answering" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 6: Transcribe Audio -->
-                    <div class="project-card-large" data-index="5">
-                        <div class="project-tag">AI/Audio</div>
-                        <h3>Audio Transcriber</h3>
-                        <div class="project-preview">
-                            <div class="project-icon">
-                                <i class="fas fa-microphone"></i>
-                            </div>
-                        </div>
-                        <p class="project-desc">
-                            AI-powered audio transcription tool using advanced speech recognition models. Converts audio files to accurate text with support for multiple languages and audio formats.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Speech Recognition</span>
-                            <span class="tech-tag">Jupyter</span>
-                            <span class="tech-tag">Whisper</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/Transcribe-Audio-Files-" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 7: Twitter Sentiment Analysis -->
-                    <div class="project-card-large" data-index="6">
-                        <div class="project-tag">NLP/ML</div>
-                        <h3>Twitter Sentiment Analysis</h3>
-                        <div class="project-preview">
-                            <div class="project-icon">
-                                <i class="fab fa-twitter"></i>
-                            </div>
-                        </div>
-                        <p class="project-desc">
-                            Natural Language Processing project analyzing Twitter sentiment using machine learning classification models. Processes tweets to determine positive, negative, or neutral sentiment with high accuracy.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">NLP</span>
-                            <span class="tech-tag">NLTK</span>
-                            <span class="tech-tag">TextBlob</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/Twitter-sentimental-analysis" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-                    <!-- Project 8: Image Classification -->
-                    <div class="project-card-large" data-index="7">
-                        <div class="project-tag">Deep Learning</div>
-                        <h3>Image Classification</h3>
-                        <div class="project-preview">
-                            <div class="project-icon">
-                                <i class="fas fa-image"></i>
-                            </div>
-                        </div>
-                        <p class="project-desc">
-                            Deep learning image classification using Convolutional Neural Networks (CNNs) for accurate image recognition. Trained on large datasets to classify images into multiple categories with high precision.
-                        </p>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">CNN</span>
-                            <span class="tech-tag">Keras</span>
-                        </div>
-                        <a href="https://github.com/Yashkatiyar24/Image-Classification-with-Neural-Networks" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
+                    <!-- Projects will be dynamically generated -->
                 </div>
 
                 <button class="carousel-btn next-btn" id="nextBtn">
@@ -466,6 +303,9 @@
         </div>
     </div>
 
+    <!-- Load scripts in correct order -->
+    <script src="projects-data.js"></script>
     <script src="script.js"></script>
+    <script src="projects-enhanced.js"></script>
 </body>
 </html>
