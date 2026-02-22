@@ -37,6 +37,11 @@ class ProjectsManager {
         carousel.innerHTML = this.filteredProjects.map((project, index) => {
             const categoryStyle = categoryConfig[project.category] || categoryConfig['AI System'];
             
+            // Determine if project has demo (either video or live link)
+            const hasDemo = project.demoVideo || project.liveDemo;
+            const demoButtonText = project.liveDemo ? 'Try Live Demo' : 'Watch Demo';
+            const demoIcon = project.liveDemo ? 'fas fa-external-link-alt' : 'fas fa-play-circle';
+            
             return `
                 <div class="project-card-large ${index === 0 ? 'active' : ''}" 
                      data-index="${index}"
@@ -62,9 +67,11 @@ class ProjectsManager {
                         <a href="${project.githubUrl}" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> View on GitHub
                         </a>
-                        <button class="project-demo-btn" data-project-id="${project.id}">
-                            <i class="fas fa-play-circle"></i> Live Demo
-                        </button>
+                        ${hasDemo ? `
+                            <button class="project-demo-btn" data-project-id="${project.id}">
+                                <i class="${demoIcon}"></i> ${demoButtonText}
+                            </button>
+                        ` : ''}
                     </div>
                 </div>
             `;
@@ -79,9 +86,23 @@ class ProjectsManager {
         demoBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const projectId = e.currentTarget.getAttribute('data-project-id');
-                this.openVideoModal(projectId);
+                this.handleDemoClick(projectId);
             });
         });
+    }
+    
+    handleDemoClick(projectId) {
+        const project = projectsData.find(p => p.id === projectId);
+        if (!project) return;
+        
+        // If project has liveDemo link, open in new tab
+        if (project.liveDemo) {
+            window.open(project.liveDemo, '_blank');
+        } 
+        // Otherwise, open video modal
+        else if (project.demoVideo) {
+            this.openVideoModal(projectId);
+        }
     }
     
     createVideoModal() {
