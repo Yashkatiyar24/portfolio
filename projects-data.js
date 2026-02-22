@@ -63,50 +63,41 @@ const projectsData = [
         description: 'AI-powered book generation platform built with TypeScript and Next.js. Leverages advanced language models to create comprehensive book content with intelligent chapter structuring and content generation.',
         image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-12T00-00-08-763Z-eeb322e4-chat-image-1765497608735-0.jpg',
         techStack: ['TypeScript', 'Next.js', 'AI/ML', 'OpenAI'],
-        githubUrl: 'https://github.com/Yashkatiyar24/GENBOOK.AI',
-        demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
-        }
+        githubUrl: 'https://github.com/Yashkatiyar24/GENBOOK.AI'
+        // No demo video
     },
     {
         id: 'web-rag',
         title: 'Web RAG AI Assistant',
         category: 'LLM Application',
+        isLive: true,
         description: 'Real-time web AI assistant powered by Ollama (local LLM), DuckDuckGo web search, and LangChain RAG. Combines local language models with web search capabilities to provide intelligent, context-aware responses with source citations.',
         image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/fc2551b8-be81-481c-9120-28eb9191a9cf/2025-12-23T19-57-41-205Z-d7c7db62-chat-image-1766519861186-0.jpg',
         techStack: ['Python', 'LangChain', 'RAG', 'Ollama'],
         githubUrl: 'https://github.com/Yashkatiyar24/WEB-RAG-AI-ASSISTANT',
-        demoVideo: {
-            type: 'mp4',
-            url: 'https://example.com/demo.mp4' // Replace with actual video
-        }
+        liveDemo: 'https://web-rag-ai-assistant-ksstorryqfqtfwndagyo2k.streamlit.app/'
     },
     {
         id: 'movie-recommender',
         title: 'Movie Recommender System',
         category: 'AI System',
+        isLive: true,
         description: 'Intelligent movie recommendation system powered by TMDb and machine learning. Uses collaborative filtering and content-based algorithms to suggest personalized movie recommendations based on user preferences.',
         image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-12T00-00-08-988Z-6e11d10b-chat-image-1765497608957-1.jpg',
         techStack: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
         githubUrl: 'https://github.com/Yashkatiyar24/Movie-recommendation',
-        demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
-        }
+        liveDemo: 'https://huggingface.co/spaces/Yashkatiyar/movie-recommender'
     },
     {
         id: 'vqa',
         title: 'Visual Question Answering',
         category: 'Multimodal AI',
+        isLive: true,
         description: 'Upload an image and ask natural-language questions about it — the model answers based on visual understanding. Uses ViLT (Vision-and-Language Transformer), a pretrained multimodal model fine-tuned for Visual Question Answering (VQA) that jointly reasons over image and text inputs.',
         image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/fc2551b8-be81-481c-9120-28eb9191a9cf/2025-12-23T19-57-41-322Z-1c45df81-chat-image-1766519861304-1.jpg',
         techStack: ['Python', 'ViLT', 'Transformers', 'Gradio'],
         githubUrl: 'https://github.com/Yashkatiyar24/Multimodal-AI-Visual-Question-Answering',
-        demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
-        }
+        liveDemo: 'https://huggingface.co/spaces/Yashkatiyar/vqa-vilt-demo?logs=container'
     },
     {
         id: 'audio-transcriber',
@@ -116,11 +107,8 @@ const projectsData = [
         image: null, // No image, will show icon
         icon: 'fas fa-microphone',
         techStack: ['Python', 'Speech Recognition', 'Jupyter', 'Whisper'],
-        githubUrl: 'https://github.com/Yashkatiyar24/Transcribe-Audio-Files-',
-        demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
-        }
+        githubUrl: 'https://github.com/Yashkatiyar24/Transcribe-Audio-Files-'
+        // No demo
     },
     {
         id: 'twitter-sentiment',
@@ -130,11 +118,8 @@ const projectsData = [
         image: null,
         icon: 'fab fa-twitter',
         techStack: ['Python', 'NLP', 'NLTK', 'TextBlob'],
-        githubUrl: 'https://github.com/Yashkatiyar24/Twitter-sentimental-analysis',
-        demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
-        }
+        githubUrl: 'https://github.com/Yashkatiyar24/Twitter-sentimental-analysis'
+        // No demo
     },
     {
         id: 'image-classification',
@@ -144,11 +129,8 @@ const projectsData = [
         image: null,
         icon: 'fas fa-image',
         techStack: ['Python', 'TensorFlow', 'CNN', 'Keras'],
-        githubUrl: 'https://github.com/Yashkatiyar24/Image-Classification-with-Neural-Networks',
-        demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
-        }
+        githubUrl: 'https://github.com/Yashkatiyar24/Image-Classification-with-Neural-Networks'
+        // No demo
     }
 ];
 
