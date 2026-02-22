@@ -1,13 +1,12 @@
 /**
- * Intelligent Chatbot System
+ * Intelligent Chatbot System - Integrated into Main Search
  * Combines rule-based keyword routing with LLM-style responses
  * @author Yash Katiyar
  */
 
 class PortfolioChatbot {
     constructor() {
-        this.chatHistory = [];
-        this.isTyping = false;
+        this.isProcessing = false;
         this.projectsData = window.projectsData || [];
         
         // Keyword patterns for intelligent routing
@@ -57,23 +56,23 @@ class PortfolioChatbot {
             greeting: {
                 keywords: ['hi', 'hello', 'hey', 'greetings', 'sup', 'yo'],
                 responses: [
-                    "Hey there! 👋 I'm Yash's AI assistant. Ask me anything about his work, skills, or projects!",
-                    "Hello! 👋 Want to know about Yash's projects or skills? Just ask!",
-                    "Hi! 👋 I can help you explore Yash's portfolio. What would you like to know?"
+                    "Hey there! 👋 Ask me about my projects, skills, or background!",
+                    "Hello! 👋 Want to know about my work? Just ask!",
+                    "Hi! 👋 I can show you my projects, skills, and more!"
                 ]
             },
             thanks: {
                 keywords: ['thanks', 'thank you', 'appreciate', 'awesome', 'great'],
                 responses: [
                     "You're welcome! 😊 Anything else you'd like to know?",
-                    "Happy to help! 🙌 Feel free to ask more questions!",
+                    "Happy to help! 🙌 Feel free to ask more!",
                     "Glad I could help! ✨ What else can I show you?"
                 ]
             },
             help: {
                 keywords: ['help', 'what can you do', 'commands', 'how to use'],
                 responses: [
-                    "I can help you navigate Yash's portfolio! Try asking about:\n• Projects (e.g., 'Show me Salasar project')\n• Skills and technologies\n• Education and background\n• Contact information\n\nJust ask naturally! 💬"
+                    "Try asking about:\n• Projects (e.g., 'Show me Salasar project')\n• Skills and technologies\n• Education and background\n• Contact information"
                 ]
             }
         };
@@ -108,46 +107,55 @@ class PortfolioChatbot {
      * Main message handler - routes to appropriate action
      */
     async handleUserMessage(message) {
-        if (this.isTyping) return;
+        if (this.isProcessing) return;
 
         const normalizedMessage = message.toLowerCase().trim();
         
-        // Add user message to chat
-        this.addMessage(message, 'user');
+        // Show processing state
+        this.isProcessing = true;
+        this.showProcessing();
+
+        // Small delay for better UX
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         // Priority 1: Check girlfriend override (highest priority)
         const girlfriendMatch = this.checkGirlfriendQuery(normalizedMessage);
         if (girlfriendMatch) {
-            await this.respondWithTyping(girlfriendMatch.response);
+            this.showResponse(girlfriendMatch.response);
+            this.isProcessing = false;
             return;
         }
 
         // Priority 2: Check project-specific keywords
         const projectMatch = this.checkProjectKeywords(normalizedMessage);
         if (projectMatch) {
-            await this.respondWithTyping(projectMatch.response);
+            this.showResponse(projectMatch.response);
             this.executeAction(projectMatch);
+            this.isProcessing = false;
             return;
         }
 
         // Priority 3: Check section navigation keywords
         const sectionMatch = this.checkSectionKeywords(normalizedMessage);
         if (sectionMatch) {
-            await this.respondWithTyping(sectionMatch.response);
+            this.showResponse(sectionMatch.response);
             this.executeAction(sectionMatch);
+            this.isProcessing = false;
             return;
         }
 
         // Priority 4: Check fallback responses (greetings, thanks, help)
         const fallbackMatch = this.checkFallbackResponses(normalizedMessage);
         if (fallbackMatch) {
-            await this.respondWithTyping(fallbackMatch);
+            this.showResponse(fallbackMatch);
+            this.isProcessing = false;
             return;
         }
 
         // Priority 5: Default intelligent response
         const defaultResponse = this.generateIntelligentResponse(normalizedMessage);
-        await this.respondWithTyping(defaultResponse);
+        this.showResponse(defaultResponse);
+        this.isProcessing = false;
     }
 
     /**
@@ -169,7 +177,6 @@ class PortfolioChatbot {
     checkProjectKeywords(message) {
         for (const [projectName, pattern] of Object.entries(this.projectPatterns)) {
             const hasMatch = pattern.keywords.some(keyword => {
-                // Match whole words or phrases
                 const regex = new RegExp(`\\b${keyword}\\b`, 'i');
                 return regex.test(message);
             });
@@ -186,7 +193,7 @@ class PortfolioChatbot {
      */
     checkSectionKeywords(message) {
         for (const [key, pattern] of Object.entries(this.patterns)) {
-            if (key === 'girlfriend') continue; // Skip girlfriend (already checked)
+            if (key === 'girlfriend') continue;
             
             const hasMatch = pattern.keywords.some(keyword => {
                 return message.includes(keyword);
@@ -207,7 +214,6 @@ class PortfolioChatbot {
             const hasMatch = pattern.keywords.some(keyword => message.includes(keyword));
             
             if (hasMatch) {
-                // Return random response from array
                 return pattern.responses[Math.floor(Math.random() * pattern.responses.length)];
             }
         }
@@ -228,11 +234,11 @@ class PortfolioChatbot {
 
         // Check if asking questions
         if (message.includes('?')) {
-            return "That's a great question! You can explore different sections of my portfolio to learn more. Try asking about my projects, skills, or background! 🚀";
+            return "That's a great question! Explore my portfolio to learn more. Try asking about my projects, skills, or background! 🚀";
         }
 
         // Default response
-        return "I'm Yash's AI assistant! 🤖 I can help you navigate through:\n• Projects & Work\n• Skills & Technologies\n• Education & Background\n• Contact Information\n\nWhat would you like to explore?";
+        return "I can help you explore my portfolio! Try asking about:\n• Projects & Work\n• Skills & Technologies\n• Education\n• Contact Info";
     }
 
     /**
@@ -250,7 +256,6 @@ class PortfolioChatbot {
      * Scroll to specific section with highlight
      */
     scrollToSection(sectionId) {
-        // First, navigate to the section if not already there
         const section = document.getElementById(sectionId);
         
         if (section) {
@@ -309,89 +314,60 @@ class PortfolioChatbot {
     }
 
     /**
-     * Add message to chat UI
+     * Show processing state
      */
-    addMessage(text, sender) {
-        const chatMessages = document.getElementById('chatMessages');
-        if (!chatMessages) return;
-
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `chat-message ${sender}-message`;
-        
-        const messageContent = document.createElement('div');
-        messageContent.className = 'message-content';
-        messageContent.textContent = text;
-        
-        messageDiv.appendChild(messageContent);
-        chatMessages.appendChild(messageDiv);
-        
-        // Scroll to bottom
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        
-        this.chatHistory.push({ text, sender, timestamp: Date.now() });
-    }
-
-    /**
-     * Show typing indicator and respond after delay
-     */
-    async respondWithTyping(response) {
-        this.isTyping = true;
-        this.showTypingIndicator();
-        
-        // Simulate typing delay based on response length
-        const typingDelay = Math.min(1000 + (response.length * 20), 3000);
-        
-        await new Promise(resolve => setTimeout(resolve, typingDelay));
-        
-        this.hideTypingIndicator();
-        this.addMessage(response, 'bot');
-        this.isTyping = false;
-    }
-
-    /**
-     * Show typing indicator
-     */
-    showTypingIndicator() {
-        const chatMessages = document.getElementById('chatMessages');
-        if (!chatMessages) return;
-
-        const typingDiv = document.createElement('div');
-        typingDiv.className = 'chat-message bot-message typing-indicator';
-        typingDiv.id = 'typingIndicator';
-        
-        const dotsContainer = document.createElement('div');
-        dotsContainer.className = 'typing-dots';
-        
-        for (let i = 0; i < 3; i++) {
-            const dot = document.createElement('span');
-            dot.className = 'typing-dot';
-            dotsContainer.appendChild(dot);
-        }
-        
-        typingDiv.appendChild(dotsContainer);
-        chatMessages.appendChild(typingDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    /**
-     * Hide typing indicator
-     */
-    hideTypingIndicator() {
-        const indicator = document.getElementById('typingIndicator');
-        if (indicator) {
-            indicator.remove();
+    showProcessing() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.placeholder = 'Processing...';
+            searchInput.disabled = true;
         }
     }
 
     /**
-     * Clear chat history
+     * Show response as notification
      */
-    clearChat() {
-        this.chatHistory = [];
-        const chatMessages = document.getElementById('chatMessages');
-        if (chatMessages) {
-            chatMessages.innerHTML = '';
+    showResponse(message) {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.placeholder = 'Ask me anything...';
+            searchInput.disabled = false;
         }
+
+        // Create notification
+        this.showNotification(message);
+    }
+
+    /**
+     * Show notification toast
+     */
+    showNotification(message) {
+        // Remove existing notification
+        const existing = document.querySelector('.chatbot-notification');
+        if (existing) {
+            existing.remove();
+        }
+
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'chatbot-notification';
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-robot"></i>
+                <span>${message}</span>
+            </div>
+        `;
+
+        document.body.appendChild(notification);
+
+        // Show notification
+        setTimeout(() => notification.classList.add('show'), 10);
+
+        // Hide after 4 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
     }
 }
 
@@ -401,21 +377,21 @@ let portfolioChatbot;
 document.addEventListener('DOMContentLoaded', () => {
     portfolioChatbot = new PortfolioChatbot();
     
-    // Setup chat input handler
-    const chatInput = document.getElementById('searchInput');
-    const chatButton = document.getElementById('searchBtn');
+    // Setup main search input handler
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
     
-    if (chatInput && chatButton) {
+    if (searchInput && searchBtn) {
         const handleSend = () => {
-            const message = chatInput.value.trim();
-            if (message) {
+            const message = searchInput.value.trim();
+            if (message && portfolioChatbot) {
                 portfolioChatbot.handleUserMessage(message);
-                chatInput.value = '';
+                searchInput.value = '';
             }
         };
 
-        chatButton.addEventListener('click', handleSend);
-        chatInput.addEventListener('keypress', (e) => {
+        searchBtn.addEventListener('click', handleSend);
+        searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 handleSend();
             }
