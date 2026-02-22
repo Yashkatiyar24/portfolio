@@ -60,11 +60,12 @@ const projectsData = [
         id: 'genbook',
         title: 'GenBook',
         category: 'Full Stack Web Application',
+        isLive: true,
         description: 'AI-powered book generation platform built with TypeScript and Next.js. Leverages advanced language models to create comprehensive book content with intelligent chapter structuring and content generation.',
         image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2025-12-12T00-00-08-763Z-eeb322e4-chat-image-1765497608735-0.jpg',
         techStack: ['TypeScript', 'Next.js', 'AI/ML', 'OpenAI'],
-        githubUrl: 'https://github.com/Yashkatiyar24/GENBOOK.AI'
-        // No demo video
+        githubUrl: 'https://github.com/Yashkatiyar24/GENBOOK.AI',
+        liveDemo: 'https://www.genbookai.tech/'
     },
     {
         id: 'web-rag',
