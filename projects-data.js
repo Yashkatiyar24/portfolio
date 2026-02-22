@@ -1,6 +1,21 @@
 // Structured project data configuration
 const projectsData = [
     {
+        id: 'shopease',
+        title: 'Shopease',
+        category: 'React Native Application',
+        isLive: false,
+        description: 'Modern minimalist e-commerce mobile app built with React Native and Expo. Features product browsing with real-time search, cart management with swipe gestures, multi-step checkout flow, and persistent cart storage using AsyncStorage. Clean UI with smooth animations and INR currency support.',
+        image: null,
+        icon: 'fas fa-shopping-cart',
+        techStack: ['React Native', 'Expo', 'TypeScript', 'Context API'],
+        githubUrl: 'https://github.com/Yashkatiyar24/E-commerce-app',
+        demoVideo: {
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-13-25-828Z-d677c427-chat-video-1771769605737-0.mp4'
+        }
+    },
+    {
         id: 'smartorbit',
         title: 'SmartOrbit',
         category: 'iOS Application',
