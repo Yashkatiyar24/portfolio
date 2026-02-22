@@ -35,42 +35,9 @@ function showMain() {
     mainView.style.display = 'flex';
 }
 
-// Search functionality
-const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
-
-searchBtn.addEventListener('click', handleSearch);
-searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        handleSearch();
-    }
-});
-
-function handleSearch() {
-    const query = searchInput.value.toLowerCase().trim();
-    
-    if (!query) return;
-    
-    // Simple keyword matching
-    if (query.includes('project') || query.includes('work') || query.includes('github') || 
-        query.includes('salasar') || query.includes('genbook') || query.includes('finsight')) {
-        showSection('projects');
-    } else if (query.includes('skill') || query.includes('tech') || query.includes('stack') || 
-               query.includes('python') || query.includes('typescript')) {
-        showSection('skills');
-    } else if (query.includes('about') || query.includes('me') || query.includes('who')) {
-        showSection('me');
-    } else if (query.includes('education') || query.includes('learn') || query.includes('study')) {
-        showSection('education');
-    } else if (query.includes('contact') || query.includes('email') || query.includes('reach')) {
-        showSection('contact');
-    } else {
-        // Default to showing about section
-        showSection('me');
-    }
-    
-    searchInput.value = '';
-}
+// ===== SEARCH FUNCTIONALITY REMOVED =====
+// The chatbot (chatbot.js) now handles all search input functionality
+// No need for duplicate handlers here
 
 // Carousel functionality
 let currentSlide = 0;
@@ -246,3 +213,7 @@ window.addEventListener('load', () => {
 
   targets.forEach((el) => io.observe(el));
 })();
+
+// Export currentSlide for chatbot access
+window.currentProjectIndex = currentSlide;
+window.updateCarousel = updateCarousel;
