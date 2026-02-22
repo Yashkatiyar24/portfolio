@@ -10,8 +10,8 @@ const projectsData = [
         techStack: ['React Native', 'Expo', 'TypeScript', 'Firebase'],
         githubUrl: 'https://github.com/Yashkatiyar24/app-salasar-main-main',
         demoVideo: {
-            type: 'youtube',
-            url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' // Replace with actual video
+            type: 'mp4',
+            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-41-19-427Z-acc07bba-chat-video-1771771278367-0.mp4'
         }
     },
     {
