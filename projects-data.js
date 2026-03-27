@@ -3,12 +3,14 @@ const projectsData = [
     {
         id: 'salasar',
         title: 'Salasar Stay Manager',
+        domain: 'Android Development',
         category: 'Android Application',
         isLive: true,
         description: 'Production-ready hotel management mobile app built with React Native and Expo. Features real-time booking management, room tracking, customer management, and comprehensive dashboard analytics.',
         image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/fc2551b8-be81-481c-9120-28eb9191a9cf/2025-12-12T14-18-52-572Z-dce0d64f-chat-image-1765549132553-1.jpg',
         techStack: ['React Native', 'Expo', 'TypeScript', 'Firebase'],
-        githubUrl: 'https://github.com/Yashkatiyar24/app-salasar-main-main',
+        githubUrl: null,
+        liveDemo: 'https://play.google.com/store/apps/details?id=com.salasar.staymanager&pli=1',
         demoVideo: {
             type: 'mp4',
             url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-41-19-427Z-acc07bba-chat-video-1771771278367-0.mp4'
@@ -17,6 +19,7 @@ const projectsData = [
     {
         id: 'smartorbit',
         title: 'SmartOrbit',
+        domain: 'iOS Development',
         category: 'iOS Application',
         isLive: false,
         description: 'Personal exam preparation companion built with SwiftUI. Simulates real exam conditions with full-screen distraction-free environment, smart countdown timer, question palette, and detailed performance reports. Practice for Google, Amazon, Microsoft, Meta, TCS, and Infosys placement tests.',
@@ -31,6 +34,7 @@ const projectsData = [
     {
         id: 'shopease',
         title: 'Shopease',
+        domain: 'Mobile Development',
         category: 'React Native Application',
         isLive: false,
         description: 'Modern minimalist e-commerce mobile app built with React Native and Expo. Features product browsing with real-time search, cart management with swipe gestures, multi-step checkout flow, and persistent cart storage using AsyncStorage. Clean UI with smooth animations and INR currency support.',
@@ -45,6 +49,7 @@ const projectsData = [
     {
         id: 'rive-learning',
         title: 'RIVE Learning App',
+        domain: 'Mobile Development',
         category: 'React Native Application',
         isLive: false,
         description: 'Interactive learning application featuring a dynamic animated learning assistant powered by RIVE animations. The assistant reacts to user actions, progress, and performance in real-time using RIVE State Machines. Built with Expo Router for navigation and Zustand for global state management.',
@@ -59,6 +64,7 @@ const projectsData = [
     {
         id: 'genbook',
         title: 'GenBook',
+        domain: 'Full Stack Web',
         category: 'Full Stack Web Application',
         isLive: true,
         description: 'AI-powered book generation platform built with TypeScript and Next.js. Leverages advanced language models to create comprehensive book content with intelligent chapter structuring and content generation.',
@@ -68,8 +74,23 @@ const projectsData = [
         liveDemo: 'https://www.genbookai.tech/'
     },
     {
+        id: 'coldclaw',
+        title: 'ColdClaw',
+        domain: 'AI Agents',
+        category: 'AI Agent Platform',
+        isLive: true,
+        description: 'AI agent platform project focused on real-world automation and intelligent workflows.',
+        image: 'https://coldclaw.vercel.app/coldclaw-logo-v2.png',
+        imageFit: 'cover',
+        icon: 'fas fa-robot',
+        techStack: ['AI Agent', 'Automation', 'LLM'],
+        githubUrl: null,
+        liveDemo: 'https://www.coldclaw.tech/'
+    },
+    {
         id: 'web-rag',
         title: 'Web RAG AI Assistant',
+        domain: 'AI/ML Projects',
         category: 'LLM Application',
         isLive: true,
         description: 'Real-time web AI assistant powered by Ollama (local LLM), DuckDuckGo web search, and LangChain RAG. Combines local language models with web search capabilities to provide intelligent, context-aware responses with source citations.',
@@ -81,6 +102,7 @@ const projectsData = [
     {
         id: 'movie-recommender',
         title: 'Movie Recommender System',
+        domain: 'AI/ML Projects',
         category: 'AI System',
         isLive: true,
         description: 'Intelligent movie recommendation system powered by TMDb and machine learning. Uses collaborative filtering and content-based algorithms to suggest personalized movie recommendations based on user preferences.',
@@ -92,6 +114,7 @@ const projectsData = [
     {
         id: 'vqa',
         title: 'Visual Question Answering',
+        domain: 'AI/ML Projects',
         category: 'Multimodal AI',
         isLive: true,
         description: 'Upload an image and ask natural-language questions about it — the model answers based on visual understanding. Uses ViLT (Vision-and-Language Transformer), a pretrained multimodal model fine-tuned for Visual Question Answering (VQA) that jointly reasons over image and text inputs.',
@@ -103,6 +126,7 @@ const projectsData = [
     {
         id: 'audio-transcriber',
         title: 'Audio Transcriber',
+        domain: 'AI/ML Projects',
         category: 'AI Tool',
         description: 'AI-powered audio transcription tool using advanced speech recognition models. Converts audio files to accurate text with support for multiple languages and audio formats.',
         image: null, // No image, will show icon
@@ -114,6 +138,7 @@ const projectsData = [
     {
         id: 'twitter-sentiment',
         title: 'Twitter Sentiment Analysis',
+        domain: 'AI/ML Projects',
         category: 'NLP System',
         description: 'Natural Language Processing project analyzing Twitter sentiment using machine learning classification models. Processes tweets to determine positive, negative, or neutral sentiment with high accuracy.',
         image: null,
@@ -125,6 +150,7 @@ const projectsData = [
     {
         id: 'image-classification',
         title: 'Image Classification',
+        domain: 'AI/ML Projects',
         category: 'Computer Vision',
         description: 'Deep learning image classification using Convolutional Neural Networks (CNNs) for accurate image recognition. Trained on large datasets to classify images into multiple categories with high precision.',
         image: null,
@@ -186,8 +212,41 @@ const categoryConfig = {
         color: '#34d399',
         glow: 'rgba(52, 211, 153, 0.4)',
         gradient: 'linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(16, 185, 129, 0.1))'
+    },
+    'AI Agent Platform': {
+        color: '#f97316',
+        glow: 'rgba(249, 115, 22, 0.4)',
+        gradient: 'linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1))'
     }
 };
 
-// Get all unique categories for filter tabs
-const allCategories = ['All', ...new Set(projectsData.map(p => p.category))];
+// Domain-level configuration for cleaner project separation
+const domainConfig = {
+    'AI/ML Projects': {
+        icon: 'fas fa-brain',
+        label: 'AI'
+    },
+    'Android Development': {
+        icon: 'fab fa-android',
+        label: 'Android Dev'
+    },
+    'iOS Development': {
+        icon: 'fab fa-apple',
+        label: 'iOS Dev'
+    },
+    'Mobile Development': {
+        icon: 'fas fa-mobile-alt',
+        label: 'Mobile Apps'
+    },
+    'Full Stack Web': {
+        icon: 'fas fa-globe',
+        label: 'Web / Full Stack'
+    },
+    'AI Agents': {
+        icon: 'fas fa-robot',
+        label: 'AI Agents'
+    }
+};
+
+// Get all unique domains for filter tabs
+const allDomains = ['All', ...new Set(projectsData.map(p => p.domain))];

@@ -1,69 +1,107 @@
-/* ===== ENHANCED PROJECT FILTERS ===== */
-.project-filters-container {
+/* ===== PROJECT DOMAIN CARDS ===== */
+.project-domains-container {
     margin-bottom: 2rem;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.project-filters {
+.project-domains-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.domain-card {
+    background: rgba(16, 16, 18, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text-primary);
+    border-radius: 24px;
+    min-height: 165px;
+    padding: 1.7rem;
     display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.filter-tab {
-    background: rgba(26, 26, 26, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-secondary);
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    text-align: center;
+    gap: 0.35rem;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    backdrop-filter: blur(8px);
     position: relative;
     overflow: hidden;
 }
 
-.filter-tab::before {
+.domain-card-icon {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+}
+
+.domain-card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+}
+
+.domain-card-meta {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.domain-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(74, 144, 226, 0.05));
+    background: linear-gradient(160deg, rgba(74, 144, 226, 0.14), rgba(74, 144, 226, 0.02));
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.filter-tab:hover::before {
+.domain-card:hover::before {
     opacity: 1;
 }
 
-.filter-tab:hover {
+.domain-card:hover {
     border-color: rgba(74, 144, 226, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(74, 144, 226, 0.23);
 }
 
-.filter-tab.active {
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.3), rgba(74, 144, 226, 0.2));
+.domain-card.active {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.2), rgba(74, 144, 226, 0.12));
     border-color: var(--primary-blue);
-    color: var(--text-primary);
-    box-shadow: 0 0 20px rgba(74, 144, 226, 0.4);
-    font-weight: 600;
+    box-shadow: 0 0 0 1px rgba(74, 144, 226, 0.35), 0 0 26px rgba(74, 144, 226, 0.35);
 }
 
-.filter-tab.active::before {
-    opacity: 0;
+.domain-card.active .domain-card-icon,
+.domain-card.active .domain-card-title {
+    color: #dcecff;
 }
 
 /* Animated filter transition */
 .projects-carousel {
     transition: opacity 0.3s ease;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.project-card-large {
+    display: block;
+    min-width: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.project-card-large:focus-visible {
+    outline: 2px solid rgba(74, 144, 226, 0.7);
+    outline-offset: 3px;
 }
 
 /* ===== ENHANCED PROJECT TAGS ===== */
@@ -274,13 +312,27 @@
 
 /* ===== RESPONSIVE ENHANCEMENTS ===== */
 @media (max-width: 768px) {
-    .project-filters {
-        gap: 0.5rem;
+    .project-domains-grid {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
     }
-    
-    .filter-tab {
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
+
+    .projects-carousel {
+        grid-template-columns: 1fr;
+    }
+
+    .domain-card {
+        min-height: 130px;
+        border-radius: 18px;
+        padding: 1.1rem;
+    }
+
+    .domain-card-title {
+        font-size: 1.25rem;
+    }
+
+    .domain-card-meta {
+        font-size: 0.95rem;
     }
     
     .project-tag-enhanced {
@@ -311,7 +363,7 @@
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
 /* Use GPU acceleration for animations */
-.filter-tab,
+.domain-card,
 .project-tag-enhanced,
 .project-demo-btn,
 .video-modal-content {
@@ -320,7 +372,7 @@
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-    .filter-tab,
+    .domain-card,
     .project-tag-enhanced,
     .project-demo-btn,
     .video-modal,
@@ -330,15 +382,70 @@
         transition: none;
     }
     
-    .filter-tab:hover,
+    .domain-card:hover,
     .project-demo-btn:hover {
         transform: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .project-domains-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 /* ===== LOADING STATES ===== */
 .project-card-large img[loading="lazy"] {
     background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+.project-screenshot img.image-fit-cover {
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ===== DOMAIN PROJECTS VIEW ===== */
+.projects-view-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.back-to-domains-btn {
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    background: rgba(74, 144, 226, 0.12);
+    color: #dcecff;
+    border-radius: 999px;
+    padding: 0.55rem 0.95rem;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.25s ease;
+}
+
+.back-to-domains-btn:hover {
+    background: rgba(74, 144, 226, 0.2);
+    transform: translateY(-1px);
+}
+
+.selected-domain-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .projects-view-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
 }
 
 /* Skeleton loading animation */

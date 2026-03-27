@@ -117,32 +117,26 @@
             <h2>My Projects</h2>
         </div>
         
-        <!-- Filter Tabs -->
-        <div class="project-filters-container">
-            <div class="project-filters" id="projectFilters">
-                <!-- Filters will be dynamically generated -->
+        <div class="project-domains-container">
+            <div class="project-domains-grid" id="projectFilters">
+                <!-- Domain cards will be dynamically generated -->
             </div>
         </div>
         
         <div class="section-content">
-            <div class="carousel-container">
-                <button class="carousel-btn prev-btn" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
+            <div class="projects-view-header" id="projectsViewHeader">
+                <button class="back-to-domains-btn" id="backToDomainsBtn">
+                    <i class="fas fa-arrow-left"></i> Domains
                 </button>
-                
-                <div class="projects-carousel">
-                    <!-- Projects will be dynamically generated -->
-                </div>
-
-                <button class="carousel-btn next-btn" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <h3 class="selected-domain-title" id="selectedDomainTitle"></h3>
             </div>
 
-            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="projects-carousel">
+                <!-- Projects will be dynamically generated -->
+            </div>
 
             <p class="projects-note">
-                I've worked on a bunch of cool projects, especially in ML, NLP, and computer vision. I love building real-world AI systems and full-stack applications.
+                Projects are organized by domain so you can quickly explore my AI/ML work, Android apps, iOS apps, mobile products, and full-stack web builds.
             </p>
         </div>
         <div class="bottom-nav">
@@ -313,18 +307,20 @@
                                 <i class="fas fa-chevron-down dropdown-icon"></i>
                             </button>
                             <div class="resume-dropdown-menu">
-                                <a href="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-54-48-978Z-629bef0b-Yashkatiyar_App.pdf" 
-                                   download="Yash_Katiyar_App_Developer_Resume.pdf" 
-                                   class="resume-option">
+                                          <a href="resumes/ResumeYashKatiyar.pdf" 
+                                              target="_blank" 
+                                              rel="noopener noreferrer"
+                                              class="resume-option">
                                     <i class="fas fa-mobile-alt"></i>
                                     <div>
                                         <strong>App Developer</strong>
                                         <small>Mobile & Full Stack</small>
                                     </div>
                                 </a>
-                                <a href="https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-54-49-116Z-ec440bab-Yashkatiyar_resumeAI.pdf" 
-                                   download="Yash_Katiyar_AI_ML_Resume.pdf" 
-                                   class="resume-option">
+                                          <a href="resumes/Yashkatiyar_resumeAI.pdf" 
+                                              target="_blank" 
+                                              rel="noopener noreferrer"
+                                              class="resume-option">
                                     <i class="fas fa-brain"></i>
                                     <div>
                                         <strong>AI/ML Engineer</strong>

@@ -26,6 +26,11 @@ function showSection(sectionName) {
     if (sections[sectionName]) {
         sections[sectionName].style.display = 'block';
     }
+
+    // Always open Projects on its main domain screen, not last viewed domain.
+    if (sectionName === 'projects' && window.projectsManager && typeof window.projectsManager.showDomainsView === 'function') {
+        window.projectsManager.showDomainsView();
+    }
 }
 
 function showMain() {

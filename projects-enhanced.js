@@ -1,9 +1,8 @@
 // Enhanced Projects Module
 class ProjectsManager {
     constructor() {
-        this.currentSlide = 0;
-        this.currentFilter = 'All';
-        this.filteredProjects = [...projectsData];
+        this.currentFilter = null;
+        this.filteredProjects = [];
         this.isModalOpen = false;
         
         this.init();
@@ -11,23 +10,32 @@ class ProjectsManager {
     
     init() {
         this.renderFilterTabs();
-        this.renderProjects();
-        this.createDots();
         this.setupEventListeners();
-        this.updateCarousel();
+        this.showDomainsView();
         this.createVideoModal();
     }
     
     renderFilterTabs() {
         const filterContainer = document.getElementById('projectFilters');
         if (!filterContainer) return;
-        
-        filterContainer.innerHTML = allCategories.map(category => `
-            <button class="filter-tab ${category === 'All' ? 'active' : ''}" 
-                    data-category="${category}">
-                ${category}
+
+        filterContainer.innerHTML = allDomains
+            .filter(domain => domain !== 'All')
+            .map(domain => {
+            const domainInfo = domainConfig[domain] || {};
+            const domainIcon = domainInfo.icon || 'fas fa-folder-open';
+            const domainLabel = domainInfo.label || domain;
+            const count = projectsData.filter(project => project.domain === domain).length;
+
+            return `
+            <button class="domain-card ${domain === this.currentFilter ? 'active' : ''}" 
+                    data-domain="${domain}">
+                <span class="domain-card-icon"><i class="${domainIcon}"></i></span>
+                <span class="domain-card-title">${domainLabel}</span>
+                <span class="domain-card-meta">${count} project${count > 1 ? 's' : ''}</span>
             </button>
-        `).join('');
+        `;
+        }).join('');
     }
     
     renderProjects() {
@@ -36,6 +44,7 @@ class ProjectsManager {
         
         carousel.innerHTML = this.filteredProjects.map((project, index) => {
             const categoryStyle = categoryConfig[project.category] || categoryConfig['AI System'];
+            const hasGithub = Boolean(project.githubUrl && project.githubUrl.includes('github.com'));
             
             // Determine if project has demo (either video or live link)
             const hasDemo = project.demoVideo || project.liveDemo;
@@ -43,19 +52,14 @@ class ProjectsManager {
             const demoIcon = project.liveDemo ? 'fas fa-external-link-alt' : 'fas fa-play-circle';
             
             return `
-                <div class="project-card-large ${index === 0 ? 'active' : ''}" 
+                 <div class="project-card-large" 
                      data-index="${index}"
-                     data-category="${project.category}">
-                    <div class="project-tag-enhanced" 
-                         style="background: ${categoryStyle.gradient}; 
-                                color: ${categoryStyle.color}; 
-                                box-shadow: 0 0 20px ${categoryStyle.glow};">
-                        ${project.isLive ? '🔴 Live • ' : ''}${project.category}
-                    </div>
+                     data-project-id="${project.id}"
+                     data-domain="${project.domain}">
                     <h3>${project.title}</h3>
                     <div class="project-preview ${project.image ? 'project-screenshot' : ''}">
                         ${project.image 
-                            ? `<img src="${project.image}" alt="${project.title}" loading="lazy">` 
+                            ? `<img src="${project.image}" alt="${project.title}" loading="lazy" class="${project.imageFit === 'cover' ? 'image-fit-cover' : ''}">` 
                             : `<div class="project-icon"><i class="${project.icon}"></i></div>`
                         }
                     </div>
@@ -64,9 +68,11 @@ class ProjectsManager {
                         ${project.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                     </div>
                     <div class="project-actions">
+                        ${hasGithub ? `
                         <a href="${project.githubUrl}" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> View on GitHub
                         </a>
+                        ` : ''}
                         ${hasDemo ? `
                             <button class="project-demo-btn" data-project-id="${project.id}">
                                 <i class="${demoIcon}"></i> ${demoButtonText}
@@ -79,6 +85,41 @@ class ProjectsManager {
         
         // Re-attach event listeners for demo buttons
         this.attachDemoButtonListeners();
+        this.attachProjectCardListeners();
+    }
+
+    attachProjectCardListeners() {
+        const cards = document.querySelectorAll('.project-card-large');
+        cards.forEach(card => {
+            const projectId = card.getAttribute('data-project-id');
+            if (!projectId) return;
+
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+
+            card.addEventListener('click', (e) => {
+                // Let explicit CTA actions behave normally.
+                if (e.target.closest('a, button')) return;
+                this.openProjectLink(projectId);
+            });
+
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.openProjectLink(projectId);
+                }
+            });
+        });
+    }
+
+    openProjectLink(projectId) {
+        const project = projectsData.find(p => p.id === projectId);
+        if (!project) return;
+
+        const primaryUrl = project.liveDemo || project.githubUrl;
+        if (primaryUrl) {
+            window.open(primaryUrl, '_blank');
+        }
     }
     
     attachDemoButtonListeners() {
@@ -186,117 +227,108 @@ class ProjectsManager {
         }, 300);
     }
     
-    filterProjects(category) {
-        this.currentFilter = category;
+    filterProjects(domain) {
+        this.currentFilter = domain;
+        const projectsContainer = document.querySelector('#projectsSection .section-content');
+        const domainsContainer = document.querySelector('.project-domains-container');
+        const selectedDomainTitle = document.getElementById('selectedDomainTitle');
         
-        // Fade out current projects
         const carousel = document.querySelector('.projects-carousel');
+        if (!carousel) return;
+
         carousel.style.opacity = '0';
+        if (projectsContainer) projectsContainer.style.display = 'block';
+        if (domainsContainer) domainsContainer.style.display = 'none';
+        if (selectedDomainTitle) selectedDomainTitle.textContent = domain;
         
         setTimeout(() => {
-            if (category === 'All') {
-                this.filteredProjects = [...projectsData];
-            } else {
-                this.filteredProjects = projectsData.filter(p => p.category === category);
-            }
-            
-            this.currentSlide = 0;
+            this.filteredProjects = projectsData.filter(p => p.domain === domain);
+
             this.renderProjects();
-            this.createDots();
             this.updateCarousel();
             
-            // Fade in new projects
             carousel.style.opacity = '1';
         }, 300);
-        
-        // Update active tab
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.classList.toggle('active', tab.getAttribute('data-category') === category);
+ 
+        // Update active domain card
+        document.querySelectorAll('.domain-card').forEach(card => {
+            card.classList.toggle('active', card.getAttribute('data-domain') === domain);
+        });
+
+        const projectsList = document.querySelector('.projects-carousel');
+        if (projectsList) {
+            projectsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    showDomainsView() {
+        const projectsContainer = document.querySelector('#projectsSection .section-content');
+        const domainsContainer = document.querySelector('.project-domains-container');
+        const selectedDomainTitle = document.getElementById('selectedDomainTitle');
+        const carousel = document.querySelector('.projects-carousel');
+
+        this.currentFilter = null;
+        this.filteredProjects = [];
+
+        if (domainsContainer) domainsContainer.style.display = 'block';
+        if (projectsContainer) projectsContainer.style.display = 'none';
+        if (selectedDomainTitle) selectedDomainTitle.textContent = '';
+        if (carousel) carousel.innerHTML = '';
+
+        document.querySelectorAll('.domain-card').forEach(card => {
+            card.classList.remove('active');
         });
     }
     
     createDots() {
         const dotsContainer = document.getElementById('carouselDots');
         if (!dotsContainer) return;
-        
-        dotsContainer.innerHTML = this.filteredProjects.map((_, index) => `
-            <div class="dot ${index === 0 ? 'active' : ''}" data-index="${index}"></div>
-        `).join('');
-        
-        // Add click listeners to dots
-        dotsContainer.querySelectorAll('.dot').forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
-                this.goToSlide(index);
-            });
-        });
+
+        dotsContainer.innerHTML = '';
+        dotsContainer.style.display = 'none';
     }
     
     updateCarousel() {
-        const cards = document.querySelectorAll('.project-card-large');
-        const dots = document.querySelectorAll('.dot');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        
-        // Update cards
-        cards.forEach((card, index) => {
-            card.classList.toggle('active', index === this.currentSlide);
-        });
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
-        });
-        
-        // Update buttons
-        if (prevBtn) prevBtn.disabled = this.currentSlide === 0;
-        if (nextBtn) nextBtn.disabled = this.currentSlide === this.filteredProjects.length - 1;
+
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
     }
     
     nextSlide() {
-        if (this.currentSlide < this.filteredProjects.length - 1) {
-            this.currentSlide++;
-            this.updateCarousel();
-        }
+        return;
     }
     
     prevSlide() {
-        if (this.currentSlide > 0) {
-            this.currentSlide--;
-            this.updateCarousel();
-        }
+        return;
     }
     
     goToSlide(index) {
-        this.currentSlide = index;
-        this.updateCarousel();
+        return;
     }
     
     setupEventListeners() {
-        // Filter tabs
-        const filterTabs = document.querySelectorAll('.filter-tab');
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const category = tab.getAttribute('data-category');
-                this.filterProjects(category);
+        // Domain cards
+        const domainCards = document.querySelectorAll('.domain-card');
+        domainCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const domain = card.getAttribute('data-domain');
+                this.filterProjects(domain);
             });
         });
+
+        const backToDomainsBtn = document.getElementById('backToDomainsBtn');
+        if (backToDomainsBtn) {
+            backToDomainsBtn.addEventListener('click', () => this.showDomainsView());
+        }
         
-        // Carousel buttons
+        // Carousel buttons hidden in domain list mode
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         
-        if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
-        if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            const projectsSection = document.getElementById('projectsSection');
-            if (projectsSection && projectsSection.style.display === 'block' && !this.isModalOpen) {
-                if (e.key === 'ArrowRight') this.nextSlide();
-                if (e.key === 'ArrowLeft') this.prevSlide();
-            }
-        });
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
     }
 }
 
@@ -306,6 +338,7 @@ let projectsManager;
 function initProjects() {
     if (typeof projectsData !== 'undefined' && typeof categoryConfig !== 'undefined') {
         projectsManager = new ProjectsManager();
+        window.projectsManager = projectsManager;
     }
 }
 
