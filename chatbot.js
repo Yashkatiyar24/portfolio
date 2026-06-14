@@ -297,25 +297,22 @@ class PortfolioChatbot {
      * Scroll to specific section with highlight
      */
     scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
+        const routeMap = {
+            'meSection': '/me',
+            'projectsSection': '/projects',
+            'skillsSection': '/skills',
+            'educationSection': '/education',
+            'contactSection': '/contact'
+        };
         
-        if (section) {
-            // Hide main view
-            document.getElementById('mainView').style.display = 'none';
-            
-            // Hide all sections
-            document.querySelectorAll('.section-view').forEach(s => {
-                s.style.display = 'none';
-            });
-            
-            // Show target section
-            section.style.display = 'block';
-            
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            // Add highlight effect
-            this.highlightElement(section);
+        const route = routeMap[sectionId];
+        if (route && window.router) {
+            window.router.navigate(route);
+            // Highlight after navigation
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) this.highlightElement(section);
+            }, 400);
         }
     }
 

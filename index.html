@@ -104,7 +104,7 @@
         </div>
         
         <div class="bottom-nav">
-            <button class="back-btn" onclick="showMain()">
+            <button class="back-btn" onclick="window.router && window.router.back()">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
         </div>
@@ -142,7 +142,7 @@
             </p>
         </div>
         <div class="bottom-nav">
-            <button class="back-btn" onclick="showMain()">
+            <button class="back-btn" onclick="window.router && window.router.back()">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
         </div>
@@ -204,7 +204,7 @@
             </div>
         </div>
         <div class="bottom-nav">
-            <button class="back-btn" onclick="showMain()">
+            <button class="back-btn" onclick="window.router && window.router.back()">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
         </div>
@@ -259,7 +259,7 @@
             </div>
         </div>
         <div class="bottom-nav">
-            <button class="back-btn" onclick="showMain()">
+            <button class="back-btn" onclick="window.router && window.router.back()">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
         </div>
@@ -336,17 +336,24 @@
             </div>
         </div>
         <div class="bottom-nav">
-            <button class="back-btn" onclick="showMain()">
+            <button class="back-btn" onclick="window.router && window.router.back()">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
         </div>
     </div>
 
     <!-- Load scripts in correct order -->
+    <script src="router.js"></script>
     <script src="projects-data.js"></script>
     <script src="script.js"></script>
     <script src="projects-enhanced.js"></script>
     <script src="chatbot.js"></script>
+    
+    <script>
+        if (window.router) {
+            window.router.start();
+        }
+    </script>
     
     <script>
         // Resume dropdown toggle

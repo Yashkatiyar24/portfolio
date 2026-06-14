@@ -4,6 +4,7 @@ class ProjectsManager {
         this.currentFilter = null;
         this.filteredProjects = [];
         this.isModalOpen = false;
+        this.filterTimeout = null;
         
         this.init();
     }
@@ -228,6 +229,11 @@ class ProjectsManager {
     }
     
     filterProjects(domain) {
+        if (this.filterTimeout) {
+            clearTimeout(this.filterTimeout);
+            this.filterTimeout = null;
+        }
+
         this.currentFilter = domain;
         const projectsContainer = document.querySelector('#projectsSection .section-content');
         const domainsContainer = document.querySelector('.project-domains-container');
@@ -241,13 +247,14 @@ class ProjectsManager {
         if (domainsContainer) domainsContainer.style.display = 'none';
         if (selectedDomainTitle) selectedDomainTitle.textContent = domain;
         
-        setTimeout(() => {
+        this.filterTimeout = setTimeout(() => {
             this.filteredProjects = projectsData.filter(p => p.domain === domain);
 
             this.renderProjects();
             this.updateCarousel();
             
             carousel.style.opacity = '1';
+            this.filterTimeout = null;
         }, 300);
  
         // Update active domain card
@@ -309,18 +316,25 @@ class ProjectsManager {
     }
     
     setupEventListeners() {
-        // Domain cards
+        // Domain cards - navigate through router for proper history entries
         const domainCards = document.querySelectorAll('.domain-card');
         domainCards.forEach(card => {
             card.addEventListener('click', () => {
                 const domain = card.getAttribute('data-domain');
-                this.filterProjects(domain);
+                const slug = domainSlugs[domain];
+                if (slug && window.router) {
+                    window.router.navigate('/projects/' + slug);
+                }
             });
         });
 
         const backToDomainsBtn = document.getElementById('backToDomainsBtn');
         if (backToDomainsBtn) {
-            backToDomainsBtn.addEventListener('click', () => this.showDomainsView());
+            backToDomainsBtn.addEventListener('click', () => {
+                if (window.router) {
+                    window.router.navigate('/projects');
+                }
+            });
         }
         
         // Carousel buttons hidden in domain list mode

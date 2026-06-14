@@ -1,50 +1,76 @@
-// Navigation functionality
+const router = new Router();
+window.router = router;
+
+function hideAllViews() {
+    document.getElementById('mainView').style.display = 'none';
+    document.querySelectorAll('.section-view').forEach(s => {
+        s.style.display = 'none';
+    });
+}
+
+function showMainView() {
+    hideAllViews();
+    document.getElementById('mainView').style.display = 'flex';
+}
+
+function showSectionView(sectionId) {
+    hideAllViews();
+    const el = document.getElementById(sectionId);
+    if (el) {
+        el.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+router.register('/', () => showMainView());
+router.register('/me', () => showSectionView('meSection'));
+router.register('/skills', () => showSectionView('skillsSection'));
+router.register('/education', () => showSectionView('educationSection'));
+router.register('/contact', () => showSectionView('contactSection'));
+
+router.register('/projects', () => {
+    showSectionView('projectsSection');
+    if (window.projectsManager) {
+        window.projectsManager.showDomainsView();
+    }
+});
+
+router.register('/projects/:slug', (params) => {
+    showSectionView('projectsSection');
+    if (window.projectsManager) {
+        const domain = slugToDomain[params.slug];
+        if (domain) {
+            window.projectsManager.filterProjects(domain);
+        } else {
+            router.navigate('/projects');
+        }
+    }
+});
+
 const navButtons = document.querySelectorAll('.nav-btn');
-const mainView = document.getElementById('mainView');
-const sections = {
-    'me': document.getElementById('meSection'),
-    'projects': document.getElementById('projectsSection'),
-    'skills': document.getElementById('skillsSection'),
-    'education': document.getElementById('educationSection'),
-    'contact': document.getElementById('contactSection')
+const sectionRouteMap = {
+    'me': '/me',
+    'projects': '/projects',
+    'skills': '/skills',
+    'education': '/education',
+    'contact': '/contact'
 };
 
 navButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const sectionName = btn.getAttribute('data-section');
-        showSection(sectionName);
+        const route = sectionRouteMap[sectionName];
+        if (route) {
+            window.router.navigate(route);
+        }
     });
 });
-
-function showSection(sectionName) {
-    mainView.style.display = 'none';
-    
-    Object.keys(sections).forEach(key => {
-        sections[key].style.display = 'none';
-    });
-    
-    if (sections[sectionName]) {
-        sections[sectionName].style.display = 'block';
-    }
-
-    // Always open Projects on its main domain screen, not last viewed domain.
-    if (sectionName === 'projects' && window.projectsManager && typeof window.projectsManager.showDomainsView === 'function') {
-        window.projectsManager.showDomainsView();
-    }
-}
-
-function showMain() {
-    Object.keys(sections).forEach(key => {
-        sections[key].style.display = 'none';
-    });
-    mainView.style.display = 'flex';
-}
 
 // ===== SEARCH FUNCTIONALITY REMOVED =====
 // The chatbot (chatbot.js) now handles all search input functionality
 // No need for duplicate handlers here
 
-// Carousel functionality
+// Carousel functionality (legacy – kept for chatbot compatibility)
 let currentSlide = 0;
 const projectCards = document.querySelectorAll('.project-card-large');
 const totalSlides = projectCards.length;
@@ -52,7 +78,6 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const dotsContainer = document.getElementById('carouselDots');
 
-// Create dots
 function createDots() {
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
@@ -64,21 +89,14 @@ function createDots() {
 }
 
 function updateCarousel() {
-    // Hide all cards
     projectCards.forEach(card => {
         card.classList.remove('active');
     });
-    
-    // Show current card
     projectCards[currentSlide].classList.add('active');
-    
-    // Update dots
     const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
-    
-    // Update button states
     prevBtn.disabled = currentSlide === 0;
     nextBtn.disabled = currentSlide === totalSlides - 1;
 }
@@ -102,21 +120,18 @@ function goToSlide(index) {
     updateCarousel();
 }
 
-// Event listeners for carousel
 if (nextBtn && prevBtn) {
     nextBtn.addEventListener('click', nextSlide);
     prevBtn.addEventListener('click', prevSlide);
 }
 
-// Initialize carousel
 if (projectCards.length > 0) {
     createDots();
     updateCarousel();
 }
 
-// Keyboard navigation for carousel
 document.addEventListener('keydown', (e) => {
-    if (sections.projects.style.display === 'block') {
+    if (document.getElementById('projectsSection').style.display === 'block') {
         if (e.key === 'ArrowRight') {
             nextSlide();
         } else if (e.key === 'ArrowLeft') {
@@ -169,41 +184,8 @@ window.addEventListener('load', () => {
     document.body.style.opacity = '1';
 });
 
-// Auto-play carousel (optional - uncomment to enable)
-// let autoPlayInterval;
-// function startAutoPlay() {
-//     autoPlayInterval = setInterval(() => {
-//         if (currentSlide < totalSlides - 1) {
-//             nextSlide();
-//         } else {
-//             currentSlide = 0;
-//             updateCarousel();
-//         }
-//     }, 5000); // Change slide every 5 seconds
-// }
-
-// function stopAutoPlay() {
-//     clearInterval(autoPlayInterval);
-// }
-
-// Start auto-play when projects section is visible
-// const observer = new IntersectionObserver((entries) => {
-//     entries.forEach(entry => {
-//         if (entry.isIntersecting && entry.target.id === 'projectsSection') {
-//             startAutoPlay();
-//         } else {
-//             stopAutoPlay();
-//         }
-//     });
-// });
-
-// if (sections.projects) {
-//     observer.observe(sections.projects);
-// }
-
 // ===== Smooth reveal animations on scroll =====
 (function setupReveal() {
-  // add .reveal to cards/sections (customize selectors as per your HTML)
   const targets = document.querySelectorAll("section, .card, .project-card-large, .skills-category, .education-item, .contact-card");
   targets.forEach((el) => el.classList.add("reveal"));
 
@@ -219,6 +201,6 @@ window.addEventListener('load', () => {
   targets.forEach((el) => io.observe(el));
 })();
 
-// Export currentSlide for chatbot access
+// Export for chatbot access
 window.currentProjectIndex = currentSlide;
 window.updateCarousel = updateCarousel;
