@@ -2,7 +2,7 @@ const domainSlugs = {
     'AI/ML Projects': 'ai-ml',
     'Android Development': 'android',
     'iOS Development': 'ios',
-    'Mobile Development': 'mobile',
+
     'Full Stack Web': 'full-stack',
     'AI Agents': 'ai-agents'
 };

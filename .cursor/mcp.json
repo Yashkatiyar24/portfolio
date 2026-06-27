@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "jetro": {
+      "type": "stdio",
+      "command": "/Users/yashkatiyar/.jetro/runtime/node-darwin-arm64",
+      "args": [
+        "/Users/yashkatiyar/.jetro/mcp-server/index.js"
+      ],
+      "env": {
+        "JET_WORKSPACE": "/Users/yashkatiyar/Desktop/portfolio/portfolio",
+        "JET_API_URL": "https://api.jetro.ai",
+        "PATH": "/Users/yashkatiyar/.jetro/runtime:/opt/homebrew/opt/openjdk@17/bin:/Users/yashkatiyar/.opencode/bin:/Users/yashkatiyar/.local/bin:/Users/yashkatiyar/fvm/default/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin"
+      }
+    }
+  }
+}

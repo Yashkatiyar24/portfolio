@@ -32,34 +32,17 @@ const projectsData = [
         }
     },
     {
-        id: 'shopease',
-        title: 'Shopease',
-        domain: 'Mobile Development',
-        category: 'React Native Application',
-        isLive: false,
-        description: 'Modern minimalist e-commerce mobile app built with React Native and Expo. Features product browsing with real-time search, cart management with swipe gestures, multi-step checkout flow, and persistent cart storage using AsyncStorage. Clean UI with smooth animations and INR currency support.',
-        image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-35-51-829Z-700ee216-chat-image-1771770951809-1.jpg',
-        techStack: ['React Native', 'Expo', 'TypeScript', 'Context API'],
-        githubUrl: 'https://github.com/Yashkatiyar24/E-commerce-app',
-        demoVideo: {
-            type: 'mp4',
-            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-13-25-828Z-d677c427-chat-video-1771769605737-0.mp4'
-        }
-    },
-    {
-        id: 'rive-learning',
-        title: 'RIVE Learning App',
-        domain: 'Mobile Development',
-        category: 'React Native Application',
-        isLive: false,
-        description: 'Interactive learning application featuring a dynamic animated learning assistant powered by RIVE animations. The assistant reacts to user actions, progress, and performance in real-time using RIVE State Machines. Built with Expo Router for navigation and Zustand for global state management.',
-        image: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-35-51-941Z-e01f4dd7-chat-image-1771770951920-2.jpg',
-        techStack: ['React Native', 'Expo', 'RIVE', 'Zustand'],
-        githubUrl: 'https://github.com/Yashkatiyar24/RIVE-Learning-App',
-        demoVideo: {
-            type: 'mp4',
-            url: 'https://nyc3.digitaloceanspaces.com/bhindi-drive/files/73256284-090b-451e-9f1e-6449b0c42deb/2026-02-22T14-26-20-737Z-16be897b-chat-video-1771770380558-0.mov'
-        }
+        id: 'heart-to-mind',
+        title: 'Heart to Mind',
+        domain: 'iOS Development',
+        category: 'iOS Application',
+        isLive: true,
+        description: 'Personal wellness and meditation companion with guided meditation sessions, relaxing audio tracks, personalized wellness content, daily mindfulness reminders, and listening history tracking.',
+        image: null,
+        icon: 'fas fa-heart',
+        techStack: ['SwiftUI', 'Swift'],
+        githubUrl: null,
+        liveDemo: 'https://apps.apple.com/in/app/heart-to-mind/id6775721981'
     },
     {
         id: 'genbook',
@@ -188,11 +171,7 @@ const categoryConfig = {
         glow: 'rgba(244, 114, 182, 0.4)',
         gradient: 'linear-gradient(135deg, rgba(244, 114, 182, 0.2), rgba(236, 72, 153, 0.1))'
     },
-    'React Native Application': {
-        color: '#22d3ee',
-        glow: 'rgba(34, 211, 238, 0.4)',
-        gradient: 'linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(6, 182, 212, 0.1))'
-    },
+
     'Multimodal AI': {
         color: '#fb923c',
         glow: 'rgba(251, 146, 60, 0.4)',
@@ -234,10 +213,7 @@ const domainConfig = {
         icon: 'fab fa-apple',
         label: 'iOS Dev'
     },
-    'Mobile Development': {
-        icon: 'fas fa-mobile-alt',
-        label: 'Mobile Apps'
-    },
+
     'Full Stack Web': {
         icon: 'fas fa-globe',
         label: 'Web / Full Stack'
