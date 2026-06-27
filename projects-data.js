@@ -38,10 +38,9 @@ const projectsData = [
         category: 'iOS Application',
         isLive: true,
         description: 'Personal wellness and meditation companion with guided meditation sessions, relaxing audio tracks, personalized wellness content, daily mindfulness reminders, and listening history tracking.',
-        image: null,
-        icon: 'fas fa-heart',
-        techStack: ['SwiftUI', 'Swift'],
-        githubUrl: null,
+        image: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/01/ed/02/01ed02a1-5bc9-7aa8-8f93-188f98ae7f28/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/512x512bb.jpg',
+        techStack: ['Flutter', 'Dart'],
+        githubUrl: 'https://github.com/Yashkatiyar24/heart-to-mind.git',
         liveDemo: 'https://apps.apple.com/in/app/heart-to-mind/id6775721981'
     },
     {
