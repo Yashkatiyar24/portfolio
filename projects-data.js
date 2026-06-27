@@ -56,6 +56,18 @@ const projectsData = [
         liveDemo: 'https://www.genbookai.tech/'
     },
     {
+        id: 'alvxre',
+        title: 'ALVXRE',
+        domain: 'Full Stack Web',
+        category: 'Full Stack Web Application',
+        isLive: true,
+        description: 'Premium digital infrastructure studio engineering the next generation of intelligent automation and enterprise solutions.',
+        image: 'https://www.alvxre.com/favicon.png',
+        techStack: [],
+        githubUrl: null,
+        liveDemo: 'https://www.alvxre.com/'
+    },
+    {
         id: 'coldclaw',
         title: 'ColdClaw',
         domain: 'AI Agents',
@@ -68,6 +80,18 @@ const projectsData = [
         techStack: ['AI Agent', 'Automation', 'LLM'],
         githubUrl: null,
         liveDemo: 'https://www.coldclaw.tech/'
+    },
+    {
+        id: 'ai-coding-agent',
+        title: 'AI Coding Agent',
+        domain: 'AI Agents',
+        category: 'AI Agent Platform',
+        isLive: false,
+        description: 'Jupyter Notebook experiments for building and testing an AI coding agent.',
+        image: null,
+        icon: 'fas fa-code',
+        techStack: ['Python', 'Jupyter Notebook'],
+        githubUrl: 'https://github.com/Yashkatiyar24/AI-Coding-Agent-'
     },
     {
         id: 'web-rag',
