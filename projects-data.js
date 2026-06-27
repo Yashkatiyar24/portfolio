@@ -44,6 +44,18 @@ const projectsData = [
         liveDemo: 'https://apps.apple.com/in/app/heart-to-mind/id6775721981'
     },
     {
+        id: 'knowhub',
+        title: 'KnowHub',
+        domain: 'Full Stack Web',
+        category: 'Full Stack Web Application',
+        isLive: true,
+        description: 'AI & Language Learning Marketplace to buy and sell ESL & AI teaching resources including lesson plans, worksheets, prompt libraries, mini-courses and bundles.',
+        image: 'https://alex-omega-nine.vercel.app/assets/library.jpg',
+        techStack: ['JavaScript', 'HTML', 'CSS'],
+        githubUrl: null,
+        liveDemo: 'https://alex-omega-nine.vercel.app/'
+    },
+    {
         id: 'genbook',
         title: 'GenBook',
         domain: 'Full Stack Web',
