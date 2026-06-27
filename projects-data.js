@@ -51,7 +51,7 @@ const projectsData = [
         isLive: true,
         description: 'AI & Language Learning Marketplace to buy and sell ESL & AI teaching resources including lesson plans, worksheets, prompt libraries, mini-courses and bundles.',
         image: 'https://alex-omega-nine.vercel.app/assets/library.jpg',
-        techStack: ['JavaScript', 'HTML', 'CSS'],
+        techStack: [],
         githubUrl: null,
         liveDemo: 'https://alex-omega-nine.vercel.app/'
     },
