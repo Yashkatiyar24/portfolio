@@ -44,6 +44,18 @@ const projectsData = [
         liveDemo: 'https://apps.apple.com/in/app/heart-to-mind/id6775721981'
     },
     {
+        id: 'alvxre',
+        title: 'ALVXRE',
+        domain: 'Full Stack Web',
+        category: 'Full Stack Web Application',
+        isLive: true,
+        description: 'Premium digital infrastructure studio engineering the next generation of intelligent automation and enterprise solutions.',
+        image: 'https://www.alvxre.com/favicon.png',
+        techStack: [],
+        githubUrl: null,
+        liveDemo: 'https://www.alvxre.com/'
+    },
+    {
         id: 'knowhub',
         title: 'KnowHub',
         domain: 'Full Stack Web',
@@ -66,18 +78,6 @@ const projectsData = [
         techStack: ['TypeScript', 'Next.js', 'AI/ML', 'OpenAI'],
         githubUrl: 'https://github.com/Yashkatiyar24/GENBOOK.AI',
         liveDemo: 'https://www.genbookai.tech/'
-    },
-    {
-        id: 'alvxre',
-        title: 'ALVXRE',
-        domain: 'Full Stack Web',
-        category: 'Full Stack Web Application',
-        isLive: true,
-        description: 'Premium digital infrastructure studio engineering the next generation of intelligent automation and enterprise solutions.',
-        image: 'https://www.alvxre.com/favicon.png',
-        techStack: [],
-        githubUrl: null,
-        liveDemo: 'https://www.alvxre.com/'
     },
     {
         id: 'coldclaw',
